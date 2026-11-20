@@ -1,0 +1,2941 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="artifact-type" content="tool">
+  <meta name="design-style" content="handbook">
+  <title>學習歷程－課程學習成果呈現指南｜互動導讀與能力測驗系統</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;600;700;800&family=Public+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/lucide@1.43.0/dist/umd/lucide.min.js"></script>
+  <style>
+    :root {
+      color-scheme: light;
+
+      /* Page and surfaces (Handbook) */
+      --background: #ffffff;
+      --surface-container-low: #f3f2f1;
+      --surface-container: #e8e7e5;
+      --surface-container-high: #dbdad9;
+
+      /* Ink */
+      --on-surface: #0b0c0c;
+      --on-surface-variant: #505a5f;
+
+      /* Rules */
+      --outline: #0b0c0c;
+      --outline-variant: #b1b4b6;
+
+      /* Accents */
+      --primary: #162e51;
+      --on-primary: #ffffff;
+      --primary-container: #d2e2f1;
+      --on-primary-container: #0c2d4a;
+      --secondary: #4c2c92;
+      --tertiary: #1a569e;
+      --error: #d4351c;
+      --on-error: #ffffff;
+
+      /* Semantic */
+      --positive: #1d5e3a;
+      --positive-container: #e6f4ea;
+      --warning: #c75a0a;
+      --focus: #ffdd00;
+
+      /* Data series */
+      --data-1: #1a569e;
+      --data-2: #c75a0a;
+      --data-3: #28a197;
+      --data-4: #4c2c92;
+      --data-context: #b1b4b6;
+
+      /* Fonts */
+      --font-headline: 'Noto Sans TC', 'Public Sans', sans-serif;
+      --font-body: 'Noto Sans TC', 'Public Sans', sans-serif;
+      --font-label: 'Noto Sans TC', 'Public Sans', sans-serif;
+
+      /* Type Scale (Focused Tool) */
+      --display-size: clamp(1.75rem, 1.4rem + 1.2vw, 2.25rem);
+      --headline-size: clamp(1.25rem, 1.1rem + 0.5vw, 1.5rem);
+      --subhead-size: clamp(1.0625rem, 1rem + 0.25vw, 1.1875rem);
+      --body-size: clamp(0.9375rem, 0.9rem + 0.15vw, 1rem);
+      --label-size: 0.8125rem;
+
+      /* Shape (Handbook square) */
+      --rounded: 0;
+      --rounded-lg: 0;
+      --rounded-full: 0;
+
+      /* Spacing scale (4pt base) */
+      --space-xs: 0.25rem;
+      --space-sm: 0.5rem;
+      --space-md: 1rem;
+      --space-lg: 1.5rem;
+      --space-xl: 2.5rem;
+      --space-2xl: 4rem;
+      --space-3xl: 6rem;
+
+      /* Effects */
+      --top-index-rule: 6px solid var(--primary);
+      --inset-rule: 5px solid var(--tertiary);
+      --inset-rule-ok: 5px solid var(--positive);
+      --inset-rule-error: 5px solid var(--error);
+      --button-ground: 0 2px 0 var(--primary);
+      --button-ground-secondary: 0 2px 0 var(--outline-variant);
+      --focus-yellow: #ffdd00;
+      --focus-ring: 3px solid var(--focus-yellow);
+      --focus-bar: inset 0 0 0 2px var(--on-surface);
+      --focus-underline: 0 -2px var(--focus-yellow), 0 4px var(--on-surface);
+
+      /* Motion */
+      --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+      --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+      --dur-micro: 120ms;
+      --dur-short: 220ms;
+      --dur-long: 420ms;
+    }
+
+    /* Base reset */
+    *, *::before, *::after { box-sizing: border-box; }
+    html, body {
+      overflow-x: clip;
+      margin: 0;
+      padding: 0;
+      background: var(--background);
+      color: var(--on-surface);
+      font-family: var(--font-body);
+      font-size: var(--body-size);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+    header { position: static !important; }
+    button, input, select, textarea { font-family: inherit; }
+
+    .app-shell {
+      max-width: 1160px;
+      margin: 0 auto;
+      padding: var(--space-lg);
+    }
+
+    /* Handbook top index rule */
+    .index-header {
+      border-top: var(--top-index-rule);
+      border-bottom: 1px solid var(--on-surface);
+      padding: var(--space-sm) 0;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: var(--space-md);
+      margin-bottom: var(--space-xl);
+    }
+    .index-brand {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-xs);
+    }
+    .index-kicker {
+      font-family: var(--font-label);
+      font-weight: 700;
+      font-size: var(--label-size);
+      color: var(--on-surface-variant);
+      letter-spacing: 0;
+    }
+    .index-title {
+      font-family: var(--font-headline);
+      font-weight: 800;
+      font-size: var(--subhead-size);
+      color: var(--on-surface);
+      margin: 0;
+    }
+    .user-strip {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: var(--space-sm);
+    }
+    .user-pill {
+      background: var(--surface-container-low);
+      border-left: var(--inset-rule);
+      padding: var(--space-xs) var(--space-md);
+      font-size: var(--label-size);
+      color: var(--on-surface);
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-sm);
+      align-items: center;
+    }
+    .user-pill strong { font-weight: 700; }
+
+    /* Typography */
+    h1, h2, h3, h4 {
+      font-family: var(--font-headline);
+      color: var(--on-surface);
+      margin: 0;
+      line-height: 1.2;
+      text-align: left;
+    }
+    h1 {
+      font-size: var(--display-size);
+      font-weight: 800;
+      letter-spacing: 0;
+    }
+    h2 {
+      font-size: var(--headline-size);
+      font-weight: 800;
+      letter-spacing: 0;
+    }
+    h3 {
+      font-size: var(--subhead-size);
+      font-weight: 700;
+    }
+    p {
+      margin: 0 0 var(--space-md) 0;
+      max-width: 68ch;
+      text-align: left;
+    }
+    ul, ol {
+      margin: 0 0 var(--space-md) 0;
+      padding-left: var(--space-lg);
+      max-width: 68ch;
+    }
+    li { margin-bottom: var(--space-xs); }
+
+    /* Step badges */
+    .step-badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 28px;
+      height: 28px;
+      padding: 0 var(--space-xs);
+      background: var(--primary);
+      color: var(--on-primary);
+      font-weight: 800;
+      font-size: var(--label-size);
+      flex-shrink: 0;
+    }
+    .step-badge--locked {
+      background: var(--surface-container-high);
+      color: var(--on-surface-variant);
+    }
+    .step-badge--done {
+      background: var(--positive);
+      color: var(--on-primary);
+    }
+
+    /* Status tags */
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-xs);
+      padding: var(--space-xs) var(--space-sm);
+      background: var(--primary-container);
+      color: var(--on-primary-container);
+      font-family: var(--font-label);
+      font-weight: 700;
+      font-size: var(--label-size);
+      border-radius: var(--rounded);
+    }
+    .tag--ok {
+      background: var(--positive-container);
+      color: var(--positive);
+    }
+    .tag--warn {
+      background: var(--surface-container-low);
+      color: var(--warning);
+      border: 1px solid var(--warning);
+    }
+    .tag--error {
+      background: var(--background);
+      color: var(--error);
+      border: 1px solid var(--error);
+    }
+    .tag--muted {
+      background: var(--surface-container-low);
+      color: var(--on-surface-variant);
+    }
+
+    /* Inset callouts */
+    .inset {
+      border-left: var(--inset-rule);
+      background: var(--surface-container-low);
+      padding: var(--space-md) var(--space-lg);
+      margin-bottom: var(--space-lg);
+    }
+    .inset--ok {
+      border-left: var(--inset-rule-ok);
+      background: var(--positive-container);
+    }
+    .inset--error {
+      border-left: var(--inset-rule-error);
+      background: var(--background);
+      border-top: 1px solid var(--outline-variant);
+      border-right: 1px solid var(--outline-variant);
+      border-bottom: 1px solid var(--outline-variant);
+    }
+
+    /* Grounded Buttons */
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: var(--space-sm);
+      min-height: 44px;
+      font-family: var(--font-label);
+      font-weight: 700;
+      font-size: var(--body-size);
+      line-height: 1.2;
+      background: var(--primary);
+      color: var(--on-primary);
+      border: 2px solid var(--primary);
+      border-radius: var(--rounded);
+      padding: var(--space-sm) var(--space-lg);
+      box-shadow: var(--button-ground);
+      cursor: pointer;
+      text-decoration: none;
+      transition: background-color var(--dur-micro) var(--ease-out), transform var(--dur-micro) var(--ease-out);
+    }
+    .button:hover:not(:disabled) {
+      background: var(--tertiary);
+      border-color: var(--tertiary);
+    }
+    .button:active:not(:disabled) {
+      transform: translateY(2px);
+      box-shadow: none;
+    }
+    .button:disabled {
+      background: var(--surface-container);
+      color: var(--on-surface-variant);
+      border-color: var(--outline-variant);
+      box-shadow: none;
+      cursor: not-allowed;
+    }
+    .button--secondary {
+      background: var(--surface-container-low);
+      color: var(--on-surface);
+      border: 2px solid var(--outline-variant);
+      box-shadow: var(--button-ground-secondary);
+    }
+    .button--secondary:hover:not(:disabled) {
+      background: var(--surface-container);
+      border-color: var(--outline);
+    }
+    .button--compact {
+      min-height: 44px;
+      padding: var(--space-xs) var(--space-md);
+      font-size: var(--label-size);
+    }
+    .button--danger-armed {
+      background: var(--error);
+      border-color: var(--error);
+      color: var(--on-error);
+      box-shadow: none;
+    }
+
+    .btn-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: var(--space-sm);
+      margin-top: var(--space-md);
+    }
+
+    /* Yellow focus treatment */
+    .button:focus-visible,
+    input:focus-visible,
+    select:focus-visible,
+    button:focus-visible {
+      outline: var(--focus-ring);
+      outline-offset: 0;
+      box-shadow: var(--focus-bar);
+    }
+
+    /* Form Controls */
+    .field-group {
+      margin-bottom: var(--space-lg);
+      max-width: 34rem;
+    }
+    .field-group--error {
+      border-left: var(--inset-rule-error);
+      padding-left: var(--space-md);
+    }
+    .field-label {
+      display: block;
+      font-weight: 700;
+      font-size: var(--body-size);
+      color: var(--on-surface);
+      margin-bottom: var(--space-xs);
+    }
+    .field-hint {
+      display: block;
+      font-size: var(--label-size);
+      color: var(--on-surface-variant);
+      margin-bottom: var(--space-sm);
+    }
+    .field-error {
+      display: block;
+      font-size: var(--label-size);
+      font-weight: 700;
+      color: var(--error);
+      margin-top: var(--space-xs);
+    }
+    .input-box,
+    .select-box {
+      width: 100%;
+      min-height: 44px;
+      padding: var(--space-sm) var(--space-md);
+      font-size: var(--body-size);
+      color: var(--on-surface);
+      background: var(--background);
+      border: 2px solid var(--outline);
+      border-radius: var(--rounded);
+    }
+    .select-box {
+      padding-right: var(--space-xl);
+      cursor: pointer;
+    }
+    .input-box--error,
+    .select-box--error {
+      border-color: var(--error);
+    }
+
+    /* Login Gate Layout */
+    .login-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr);
+      gap: var(--space-xl);
+      align-items: start;
+    }
+    .login-card {
+      border-top: var(--top-index-rule);
+      border: 2px solid var(--outline);
+      border-top-width: 6px;
+      border-top-color: var(--primary);
+      padding: var(--space-lg);
+      background: var(--background);
+    }
+    .guide-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .guide-list li {
+      display: flex;
+      gap: var(--space-md);
+      align-items: flex-start;
+      padding: var(--space-md) 0;
+      border-bottom: 1px solid var(--outline-variant);
+    }
+    .guide-list li:last-child { border-bottom: none; }
+
+    /* Workspace Layout */
+    .workspace-grid {
+      display: grid;
+      grid-template-columns: 290px minmax(0, 1fr);
+      gap: var(--space-xl);
+      align-items: start;
+    }
+    .workspace-grid > * { min-width: 0; }
+
+    /* Sidebar Chapter Stepper */
+    .chapter-nav {
+      border-top: 2px solid var(--on-surface);
+    }
+    .chapter-nav-title {
+      font-size: var(--label-size);
+      font-weight: 700;
+      color: var(--on-surface-variant);
+      padding: var(--space-sm) 0;
+      border-bottom: 1px solid var(--outline-variant);
+    }
+    .chapter-btn {
+      width: 100%;
+      min-height: 44px;
+      display: flex;
+      align-items: flex-start;
+      gap: var(--space-sm);
+      text-align: left;
+      padding: var(--space-md) var(--space-sm);
+      background: var(--background);
+      border: none;
+      border-bottom: 1px solid var(--outline-variant);
+      border-left: 4px solid transparent;
+      cursor: pointer;
+      color: var(--on-surface);
+      transition: background-color var(--dur-micro) var(--ease-out);
+    }
+    .chapter-btn:hover:not(:disabled) {
+      background: var(--surface-container-low);
+    }
+    .chapter-btn--active {
+      background: var(--surface-container-low);
+      border-left-color: var(--primary);
+    }
+    .chapter-btn:disabled {
+      cursor: not-allowed;
+      opacity: 0.72;
+    }
+    .chapter-btn-meta {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-xs);
+      min-width: 0;
+    }
+    .chapter-btn-name {
+      font-weight: 700;
+      font-size: var(--body-size);
+      line-height: 1.35;
+    }
+    .chapter-btn-status {
+      font-size: var(--label-size);
+      color: var(--on-surface-variant);
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-xs);
+    }
+
+    /* Chapter Header & Study Notes */
+    .chapter-head {
+      padding-bottom: var(--space-md);
+      border-bottom: 2px solid var(--on-surface);
+      margin-bottom: var(--space-lg);
+    }
+    .chapter-head-top {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: var(--space-sm);
+      margin-bottom: var(--space-sm);
+    }
+    .chapter-kicker {
+      font-size: var(--label-size);
+      font-weight: 700;
+      color: var(--tertiary);
+    }
+
+    .study-section {
+      margin-bottom: var(--space-xl);
+    }
+    .study-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr));
+      gap: var(--space-md);
+      margin-bottom: var(--space-lg);
+    }
+    .study-card {
+      background: var(--surface-container-low);
+      border-left: var(--inset-rule);
+      padding: var(--space-md) var(--space-lg);
+    }
+    .study-card h3 {
+      margin-bottom: var(--space-sm);
+      color: var(--on-surface);
+    }
+    .study-card p:last-child,
+    .study-card ul:last-child {
+      margin-bottom: 0;
+    }
+
+    /* Tables (Handbook rules: horizontal hairlines only) */
+    .data-table-wrap {
+      width: 100%;
+      overflow-x: auto;
+      margin-bottom: var(--space-lg);
+    }
+    .handbook-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: var(--body-size);
+    }
+    .handbook-table th {
+      text-align: left;
+      font-weight: 700;
+      padding: var(--space-sm) var(--space-md);
+      border-bottom: 2px solid var(--on-surface);
+      color: var(--on-surface);
+    }
+    .handbook-table td {
+      padding: var(--space-sm) var(--space-md);
+      border-bottom: 1px solid var(--outline-variant);
+      vertical-align: top;
+    }
+    .handbook-table th.num,
+    .handbook-table td.num {
+      text-align: right;
+      font-variant-numeric: tabular-nums;
+      white-space: nowrap;
+    }
+
+    /* Single-Question Quiz Engine */
+    .quiz-panel {
+      border-top: var(--top-index-rule);
+      border-right: 1px solid var(--outline-variant);
+      border-bottom: 1px solid var(--outline-variant);
+      border-left: 1px solid var(--outline-variant);
+      padding: var(--space-lg);
+      background: var(--background);
+    }
+    .quiz-meta-bar {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: var(--space-sm);
+      padding-bottom: var(--space-md);
+      border-bottom: 1px solid var(--outline-variant);
+      margin-bottom: var(--space-lg);
+    }
+    .quiz-q-id {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-sm);
+      font-weight: 700;
+    }
+    .quiz-question-text {
+      font-size: var(--subhead-size);
+      font-weight: 700;
+      line-height: 1.5;
+      color: var(--on-surface);
+      margin-bottom: var(--space-lg);
+      max-width: 68ch;
+    }
+
+    /* Options */
+    .options-stack {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-sm);
+      margin-bottom: var(--space-lg);
+    }
+    .options-tf-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: var(--space-md);
+      margin-bottom: var(--space-lg);
+      max-width: 34rem;
+    }
+    .option-btn {
+      width: 100%;
+      min-height: 50px;
+      display: flex;
+      align-items: flex-start;
+      gap: var(--space-md);
+      text-align: left;
+      padding: var(--space-md);
+      background: var(--background);
+      color: var(--on-surface);
+      border: 2px solid var(--outline);
+      border-radius: var(--rounded);
+      font-size: var(--body-size);
+      line-height: 1.5;
+      cursor: pointer;
+      transition: background-color var(--dur-micro) var(--ease-out);
+    }
+    .option-btn:hover:not(:disabled) {
+      background: var(--surface-container-low);
+    }
+    .option-btn--selected {
+      background: var(--primary-container);
+      color: var(--on-primary-container);
+      border-color: var(--primary);
+      box-shadow: inset 4px 0 0 var(--primary);
+    }
+    .option-btn--correct {
+      background: var(--positive-container);
+      color: var(--positive);
+      border-color: var(--positive);
+      box-shadow: inset 4px 0 0 var(--positive);
+    }
+    .option-btn--wrong {
+      background: var(--background);
+      color: var(--error);
+      border-color: var(--error);
+      box-shadow: inset 4px 0 0 var(--error);
+    }
+    .option-btn:disabled {
+      cursor: default;
+    }
+    .option-key {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 26px;
+      height: 26px;
+      border: 1px solid currentColor;
+      font-weight: 800;
+      font-size: var(--label-size);
+      flex-shrink: 0;
+    }
+
+    /* Fill-in-the-blank box */
+    .fill-area {
+      background: var(--surface-container-low);
+      border-left: var(--inset-rule);
+      padding: var(--space-md) var(--space-lg);
+      margin-bottom: var(--space-lg);
+      max-width: 40rem;
+    }
+
+    /* Collapsible Study Hint inside Quiz */
+    .drawer-box {
+      margin-bottom: var(--space-lg);
+      border: 1px solid var(--outline-variant);
+      background: var(--surface-container-low);
+      padding: var(--space-md) var(--space-lg);
+    }
+
+    /* Feedback panel */
+    .feedback-box {
+      margin-top: var(--space-lg);
+      padding: var(--space-md) var(--space-lg);
+    }
+    .feedback-header {
+      display: flex;
+      align-items: center;
+      gap: var(--space-sm);
+      font-weight: 800;
+      font-size: var(--subhead-size);
+      margin-bottom: var(--space-sm);
+    }
+
+    /* Final Diagnostic Report */
+    .kpi-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(200px, 100%), 1fr));
+      gap: var(--space-md);
+      margin-bottom: var(--space-xl);
+    }
+    .kpi-tile {
+      background: var(--surface-container-low);
+      border-left: var(--inset-rule);
+      padding: var(--space-md);
+    }
+    .kpi-tile--ok { border-left-color: var(--positive); }
+    .kpi-tile--warn { border-left-color: var(--warning); }
+    .kpi-label {
+      font-size: var(--label-size);
+      font-weight: 700;
+      color: var(--on-surface-variant);
+      margin-bottom: var(--space-xs);
+    }
+    .kpi-val {
+      font-size: var(--headline-size);
+      font-weight: 800;
+      color: var(--on-surface);
+      font-variant-numeric: tabular-nums;
+      line-height: 1.15;
+    }
+    .kpi-sub {
+      font-size: var(--label-size);
+      color: var(--on-surface-variant);
+      margin-top: var(--space-xs);
+    }
+
+    .chart-section {
+      margin-bottom: var(--space-xl);
+      padding-bottom: var(--space-lg);
+      border-bottom: 1px solid var(--outline-variant);
+    }
+    .chart-container {
+      width: 100%;
+      min-height: 240px;
+    }
+
+    .filter-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-sm);
+      margin-bottom: var(--space-md);
+    }
+
+    .record-item {
+      border-bottom: 1px solid var(--outline-variant);
+      padding: var(--space-md) 0;
+    }
+    .record-item-head {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: var(--space-sm);
+      margin-bottom: var(--space-xs);
+    }
+    .record-q {
+      font-weight: 700;
+      margin-bottom: var(--space-xs);
+    }
+    .record-ans-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-lg);
+      font-size: var(--label-size);
+      margin-bottom: var(--space-xs);
+    }
+    .record-exp {
+      font-size: var(--label-size);
+      color: var(--on-surface-variant);
+      background: var(--surface-container-low);
+      padding: var(--space-sm) var(--space-md);
+      border-left: 3px solid var(--outline-variant);
+    }
+
+    .hidden { display: none !important; }
+
+    /* Responsive Breakpoints */
+    @media (max-width: 860px) {
+      .workspace-grid,
+      .login-grid {
+        grid-template-columns: 1fr;
+      }
+      .chapter-nav {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(min(220px, 100%), 1fr));
+        border-top: none;
+        border-bottom: 2px solid var(--on-surface);
+        padding-bottom: var(--space-sm);
+      }
+      .chapter-nav-title {
+        grid-column: 1 / -1;
+      }
+      .chapter-btn {
+        border: 1px solid var(--outline-variant);
+        border-left-width: 4px;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .app-shell {
+        padding: var(--space-md);
+      }
+      .options-tf-grid {
+        grid-template-columns: 1fr;
+      }
+      .quiz-panel {
+        padding: var(--space-md);
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
+    }
+
+    /* Print Stylesheet for A4 PDF Report */
+    @media print {
+      body {
+        background: var(--background);
+        color: var(--on-surface);
+        font-size: 10.5pt;
+      }
+      .no-print,
+      .chapter-nav,
+      .user-strip button,
+      .filter-bar {
+        display: none !important;
+      }
+      .app-shell {
+        max-width: 100%;
+        padding: 0;
+      }
+      .workspace-grid {
+        display: block;
+      }
+      .record-item {
+        break-inside: avoid;
+        page-break-inside: avoid;
+      }
+      .kpi-tile,
+      .study-card {
+        break-inside: avoid;
+        page-break-inside: avoid;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="app-shell">
+    <!-- Handbook Top Index Bar -->
+    <header class="index-header">
+      <div class="index-brand">
+        <span class="index-kicker">學習歷程檔案導讀系統｜課程學習成果呈現指南</span>
+        <p class="index-title">高中學習歷程重點統整與分段能力測驗</p>
+      </div>
+      <div id="user-strip" class="user-strip hidden">
+        <div class="user-pill" id="user-pill-info"></div>
+        <button type="button" id="logout-btn" class="button button--secondary button--compact no-print" onclick="handleLogoutClick(this)">切換身分</button>
+      </div>
+    </header>
+
+    <!-- VIEW 1: LOGIN & IDENTITY VERIFICATION -->
+    <main id="view-login">
+      <div class="login-grid">
+        <section>
+          <h1>學生身分驗證登入</h1>
+          <p style="margin-top: var(--space-md); color: var(--on-surface-variant);">
+            本系統依據《學習歷程－課程學習成果呈現指南（導讀公版簡報）》編製，協助同學先掌握核心審查觀念與呈現架構，再透過分段測驗檢核學習成效。
+          </p>
+
+          <div class="inset">
+            <h3 style="margin-bottom: var(--space-sm);">測驗流程與解鎖規範</h3>
+            <ul class="guide-list">
+              <li>
+                <span class="step-badge">1</span>
+                <div><strong>驗證本校學生信箱：</strong>須使用 <code>@stu.cchs.chc.edu.tw</code> 網域之學校信箱帳號，並填寫正確中文姓名與學號。</div>
+              </li>
+              <li>
+                <span class="step-badge">2</span>
+                <div><strong>先複習、再單題推進測驗：</strong>全系統共 5 章，每章先提供重點概念統整，接著進行 6 題測驗（四選一選擇題 2 題、是非題 2 題、關鍵詞填充題 2 題），每作答完一題提供即時解析並推進下一題。</div>
+              </li>
+              <li>
+                <span class="step-badge">3</span>
+                <div><strong>依序解鎖與報告輸出：</strong>每章全部 6 題作答完畢後自動解鎖下一章；完成全部 5 章（共 30 題）即可檢視學習診斷報告並下載 PDF 作答紀錄。</div>
+              </li>
+            </ul>
+          </div>
+        </section>
+
+        <section class="login-card" aria-labelledby="login-heading">
+          <h2 id="login-heading" style="margin-bottom: var(--space-sm);">請輸入學生驗證資料</h2>
+          <p style="font-size: var(--label-size); color: var(--on-surface-variant); margin-bottom: var(--space-lg);">
+            資料僅用於紀錄您的作答進度與產生個人測驗診斷 PDF 報告。
+          </p>
+
+          <form id="login-form" onsubmit="handleLoginSubmit(event)" novalidate>
+            <div class="field-group" id="group-email">
+              <label class="field-label" for="login-email">學校信箱帳號</label>
+              <span class="field-hint">限用本校網域 @stu.cchs.chc.edu.tw（例：s113001@stu.cchs.chc.edu.tw）</span>
+              <input class="input-box" type="email" id="login-email" autocomplete="email" oninput="clearFieldError('email')">
+              <span class="field-error hidden" id="error-email"></span>
+            </div>
+
+            <div class="field-group" id="group-name">
+              <label class="field-label" for="login-name">中文姓名</label>
+              <span class="field-hint">請輸入完整中文姓名，將顯示於 PDF 診斷報告</span>
+              <input class="input-box" type="text" id="login-name" autocomplete="name" oninput="clearFieldError('name')">
+              <span class="field-error hidden" id="error-name"></span>
+            </div>
+
+            <div class="field-group" id="group-student-id">
+              <label class="field-label" for="login-student-id">學號</label>
+              <span class="field-hint">請輸入學校學號（限英數字，例：113001）</span>
+              <input class="input-box" type="text" id="login-student-id" oninput="clearFieldError('student-id')">
+              <span class="field-error hidden" id="error-student-id"></span>
+            </div>
+
+            <div class="btn-row">
+              <button type="submit" class="button">驗證身分並進入學習系統</button>
+            </div>
+          </form>
+        </section>
+      </div>
+    </main>
+
+    <!-- VIEW 2: MAIN WORKSPACE (CHAPTERS + QUIZ + REPORT) -->
+    <main id="view-workspace" class="hidden">
+      <div class="workspace-grid">
+        <!-- Left Navigation Rail -->
+        <aside aria-label="學習章節導覽">
+          <nav class="chapter-nav" id="chapter-nav"></nav>
+        </aside>
+
+        <!-- Right Main Content Column -->
+        <section id="main-content" aria-live="polite"></section>
+      </div>
+    </main>
+  </div>
+
+  <api-shim></api-shim>
+  <script>
+    // =========================================================================
+    // 1. CURRICULUM & QUESTION DATA (5 Chapters x 6 Questions = 30 Questions)
+    // =========================================================================
+    const CHAPTERS = [
+      {
+        id: `ch1`,
+        num: 1,
+        kicker: `第 1 章｜對應導讀手冊 Ch1（p.6–p.11）`,
+        title: `審查原則與「三重二不」共識`,
+        summaryLead: `瞭解大學教授如何審查學習歷程檔案，破除「只能比競賽、比頁數」的迷思。`,
+        studyBlocks: [
+          {
+            title: `核心制度與整體性審查原則`,
+            html: `
+              <ul>
+                <li><strong>採計比例：</strong>自 111 學年度起，大學申請入學第二階段一般校系採計「學習歷程檔案」比例需至少達 <strong>20%</strong>（醫學、牙醫、體育、美術及音樂系不在此限）。</li>
+                <li><strong>三大共識原則：</strong>臺大社會系「作伙學」審議團隊彙整高中師生與 18 學群教授共識，審查重點包含：<strong>重視一般性素養能力</strong>、<strong>重視學習的過程</strong>、<strong>重視上傳資料真實性</strong>。</li>
+                <li><strong>教授態度調查：</strong>高達 <strong>92%</strong> 教授重視以課程學習成果評估學生能力與特質；<strong>95%</strong> 同意可從作品看出申請者是否具備學系重視的特質。</li>
+              </ul>
+            `
+          },
+          {
+            title: `教授最想在課程學習成果看到的項目`,
+            html: `
+              <ul>
+                <li><strong>第 1 名（73.1%）：</strong>展現學習到的核心素養能力（如問題解決、學習態度、邏輯推理、團隊合作）。</li>
+                <li><strong>第 2 名（70.2%）：</strong>要有脈絡性，說明課程的內容與製作動機。</li>
+                <li><strong>第 3 名（67.3%）：</strong>要先有摘要，說明作品所要呈現的重點。</li>
+                <li><strong>關鍵觀念：</strong>即使作品主題與申請校系無直接「學科知識」對應，只要能說明過程展現的素養能力符合學系特質，依然能獲青睞。</li>
+              </ul>
+            `
+          }
+        ],
+        tableData: {
+          caption: `招聯會「三重二不」審查原則與教授同意度統計（N ≈ 350 位教授）`,
+          headers: [`類別`, `原則內容`, `關鍵意涵`, `教授同意率`],
+          rows: [
+            [`重視一`, `重視基本素養所展現的核心能力`, `看重學科測驗以外之溝通、解決問題與學習態度`, `96%`],
+            [`重視二`, `重視學生在校內的學習活動`, `課堂作業、報告與彈性自主學習即可，不必追逐校外活動`, `95%`],
+            [`重視三`, `重視資料真實性及學生自主準備`, `須為本人真實製作並經任課教師認證，避免過度包裝代寫`, `99%`],
+            [`不採計一`, `不是學系所列的所有項次都要具備`, `大學採多面向綜合評量，不必為了湊項目而焦慮`, `91%`],
+            [`不採計二`, `不是以量取勝，重視學習過程的反思`, `重視多元表現綜整心得與學習反思，而非獎狀數量堆疊`, `99%`]
+          ]
+        },
+        questions: [
+          {
+            id: `ch1_q1`,
+            type: `mcq`,
+            prompt: `根據招聯會公告，自 111 學年度起，大學申請入學第二階段一般校系採計「學習歷程檔案」的比例至少須達多少？`,
+            options: [`10%`, `20%`, `35%`, `50%`],
+            correct: `20%`,
+            explanation: `依據導言說明，申請入學第二階段一般校系採計學習歷程檔案的比例需至少達 20%（醫學系、牙醫系、體育系、美術系及音樂系除外）。`
+          },
+          {
+            id: `ch1_q2`,
+            type: `mcq`,
+            prompt: `根據「作伙學」對與會大學教授的問卷統計，教授認為課程學習成果呈現方式中最重要（逾 73% 勾選、排名第一）的項目為何？`,
+            options: [
+              `展現學習到的核心素養能力`,
+              `展現背誦熟記的學科知識`,
+              `華麗的封面插畫與視覺編排`,
+              `附上大量校外補習或競賽證明`
+            ],
+            correct: `展現學習到的核心素養能力`,
+            explanation: `手冊第 11 頁統計顯示，「展現學習到的核心素養能力」以 73.1% 位居第一，其次為「要有脈絡性（70.2%）」與「要先有摘要（67.3%）」。`
+          },
+          {
+            id: `ch1_q3`,
+            type: `tf`,
+            prompt: `招聯會「三重二不」原則中的「重視校內學習活動」，代表學生透過課堂作業、報告及校內彈性學習課程即可展現能力，不一定要參加大量校外活動。`,
+            options: [`正確`, `錯誤`],
+            correct: `正確`,
+            explanation: `「三重二不」第二點明確指出，校內課程學習成果與自主學習便能呈現能力與特質，學生不必花過多心力參加校外活動（獲 95% 教授同意）。`
+          },
+          {
+            id: `ch1_q4`,
+            type: `tf`,
+            prompt: `若高一、高二製作的課程學習成果與高三申請的大學校系沒有「學科知識」上的直接關聯，教授就無法從中判斷學生的學習潛能。`,
+            options: [`正確`, `錯誤`],
+            correct: `錯誤`,
+            explanation: `學科知識可由學測與修課紀錄看出；課程學習成果著重紙筆測驗以外的一般性素養能力（如問題解決、邏輯推理、團隊合作），與校系特質相符即具審查價值。`
+          },
+          {
+            id: `ch1_q5`,
+            type: `fill_input`,
+            prompt: `臺大社會系「作伙學」團隊整理出學習歷程檔案整體性的三大共識審查原則，分別為：重視一般性素養能力、重視「＿＿＿」，以及重視上傳資料的真實性。`,
+            hint: `請輸入 4 個中文字`,
+            accepted: [`學習過程`, `學習的過程`],
+            displayAnswer: `學習過程`,
+            explanation: `手冊第 6–7 頁歸納三大共識審查原則為：1. 重視一般性素養能力；2. 重視學習過程（包含動態軌跡與反思收穫）；3. 重視上傳資料真實性。`
+          },
+          {
+            id: `ch1_q6`,
+            type: `fill_select`,
+            prompt: `招聯會「三重二不」原則中的「二不」，除了「不是學系所列的所有項次都要具備」之外，另一項核心原則是：「＿＿＿，大學重視學生學習過程的反思」。`,
+            options: [
+              `不是以量取勝`,
+              `不得由老師認證`,
+              `不須撰寫百字簡述`,
+              `不採計自然科實驗`
+            ],
+            correct: `不是以量取勝`,
+            explanation: `「二不」分別為「不是學系所列的所有項次都要具備」與「不是以量取勝，大學重視學生學習過程的反思」（高達 99% 教授同意）。`
+          }
+        ]
+      },
+      {
+        id: `ch2`,
+        num: 2,
+        kicker: `第 2 章｜對應導讀手冊 Ch2、Ch4（p.12–p.16、p.34–p.45）`,
+        title: `「六大指引」與理想作品五大架構`,
+        summaryLead: `掌握整理作品的標準結構，讓審查教授在有限時間內迅速看懂你的學習亮點。`,
+        studyBlocks: [
+          {
+            title: `製作課程學習成果的「六大指引」`,
+            html: `
+              <ol>
+                <li><strong>作品要有重點，經過整理再上傳：</strong>挑選有把握或具意義的主題，在最短篇幅呈現最好內容（建議 <strong>10 頁以內</strong>，含圖表不含附件）。</li>
+                <li><strong>展現素養能力：</strong>透過具體事例呈現問題解決、批判思考、邏輯推理等核心素養。</li>
+                <li><strong>作品需要有摘要：</strong>開頭放 <strong>1～2 頁摘要</strong>，可用 <strong>5W1H</strong> 法點出重點；其中「<strong>學習或研究方法</strong>」與「<strong>內容概要</strong>」不可或缺。</li>
+                <li><strong>交代作品的脈絡：</strong>說明出自哪一門課、與特定單元的關聯性及製作動機。</li>
+                <li><strong>突顯個人的獨特性：</strong>呈現個人興趣、生活經驗發想、獨到見解或延伸應用。</li>
+                <li><strong>作品需要有真實性：</strong>標註引註來源，區分老師教授內容與自身發想，團體報告寫明個人貢獻。</li>
+              </ol>
+            `
+          },
+          {
+            title: `理想作品五大架構與「心得反思」擺放方式`,
+            html: `
+              <ul>
+                <li><strong>五大要素：</strong>標題與姓名（含出自哪堂課）→ 摘要 → 作品說明（動機與課程脈絡）→ 正文（過程與成果並重）→ 心得反思。</li>
+                <li><strong>反思置於「正文前」：</strong>可預先提示學習收穫，但須先交代脈絡避免教授一頭霧水。</li>
+                <li><strong>反思穿插「正文中」：</strong>適合多階段或多主題作品，可逐段呈現困難與解決策略。</li>
+                <li><strong>反思置於「正文後」：</strong>符合正式研究報告邏輯，讓教授了解脈絡後更有共鳴。</li>
+              </ul>
+            `
+          }
+        ],
+        tableData: {
+          caption: `六大指引與手冊核心重點檢核對照`,
+          headers: [`指引項目`, `學生常犯錯誤`, `建議調整做法`],
+          rows: [
+            [`1. 有重點、經整理`, `檔案超過 20 頁且雜亂無章，多單元拼貼無關聯`, `精簡至 10 頁內為佳；多主題須說明放置在一起的原因`],
+            [`3. 作品需要有摘要`, `直接進正文，教授找不到重點`, `開頭撰寫 1–2 頁摘要，必含研究/學習方法與內容概要`],
+            [`4. 交代作品脈絡`, `直接上傳課堂作業或口頭簡報檔`, `補上課程名稱、單元關聯與選題製作動機`]
+          ]
+        },
+        questions: [
+          {
+            id: `ch2_q1`,
+            type: `mcq`,
+            prompt: `撰寫課程學習成果的「摘要」時，雖然不必強求塞入所有項目，但手冊指出哪兩項要素是「必不可少」的核心內容？`,
+            options: [
+              `學習或研究方法與內容概要`,
+              `任課老師簽名與段考成績`,
+              `完整訪談逐字稿與原始照片`,
+              `組員聯絡方式與教室座位表`
+            ],
+            correct: `學習或研究方法與內容概要`,
+            explanation: `手冊第 34 頁說明：摘要旨在讓讀者清楚這份報告做了什麼事情，各要素中「學習或研究方法」和「內容概要」是必不可少的。`
+          },
+          {
+            id: `ch2_q2`,
+            type: `mcq`,
+            prompt: `關於理想作品五大架構中「心得反思」的編排位置，下列哪一項說明最符合手冊建議？`,
+            options: [
+              `置於正文前、穿插正文中或置於正文後皆可，應依作品形式與內容決定`,
+              `規定只能放在封面下一頁，不可放在正文之後`,
+              `若摘要已有簡述，正文與結尾就不可再出現心得反思`,
+              `只有獲得競賽獎狀的作品才需要撰寫心得反思`
+            ],
+            correct: `置於正文前、穿插正文中或置於正文後皆可，應依作品形式與內容決定`,
+            explanation: `手冊第 16 頁指出三種編排方式各有優點：置於正文前可預先提示重點、穿插正文中適合多階段作品、置於正文後符合正式報告邏輯。`
+          },
+          {
+            id: `ch2_q3`,
+            type: `tf`,
+            prompt: `將課堂完成的學習單或分組簡報檔直接轉存 PDF 上傳，即使未補上課程名稱與製作動機，審查教授仍能輕易掌握作品背景脈絡。`,
+            options: [`正確`, `錯誤`],
+            correct: `錯誤`,
+            explanation: `審查教授並不了解各校課堂進行方式，未說明課程名稱、單元關聯與製作動機的檔案會讓教授摸不著頭緒，必須整理並補充作品說明。`
+          },
+          {
+            id: `ch2_q4`,
+            type: `tf`,
+            prompt: `理想作品架構中的「正文」應兼顧作品製作的「過程」與「成果」，兩者並重且缺一不可，才能提供學習成長與素養能力的證據。`,
+            options: [`正確`, `錯誤`],
+            correct: `正確`,
+            explanation: `手冊第 15 頁明確強調：作品正文包含製作的「過程」與「成果」，過程與成果兩者並重、缺一不可。`
+          },
+          {
+            id: `ch2_q5`,
+            type: `fill_input`,
+            prompt: `依據呈現指南格式建議，一份理想的課程學習成果篇幅應重質不重量，頁數盡量控制在「＿＿＿」頁以內為佳（含圖表，不含附件）。`,
+            hint: `請輸入阿拉伯數字`,
+            accepted: [`10`, `10頁`],
+            displayAnswer: `10`,
+            explanation: `手冊第 12 頁與第 114 頁建議：篇幅盡量控制在 10 頁以內為佳（含圖表，不含附件）；若為長篇幅專題報告，可重新整理摘要與架構，並將原報告當作附件。`
+          },
+          {
+            id: `ch2_q6`,
+            type: `fill_select`,
+            prompt: `撰寫作品摘要時，若不知道如何下筆，手冊建議可運用「＿＿＿」分析法來簡要串聯脈絡（who, when, where）、問題意識（why）、方法（how）與成果（what）。`,
+            options: [
+              `5W1H`,
+              `SWOT`,
+              `PDCA`,
+              `KPI`
+            ],
+            correct: `5W1H`,
+            explanation: `手冊第 34 頁建議透過 5W1H 分析法精要呈現摘要重點，或想像在口頭報告時如何向聽眾快速導覽這份作品。`
+          }
+        ]
+      },
+      {
+        id: `ch3`,
+        num: 3,
+        kicker: `第 3 章｜對應導讀手冊 Ch3、Ch5（p.18–p.32、p.46–p.59）`,
+        title: `呈現學習過程、素養能力與真實性`,
+        summaryLead: `學會把抽象的「過程與素養」化為具體事例，並透過真實紀錄與個人想法脫穎而出。`,
+        studyBlocks: [
+          {
+            title: `學習過程三階段與三大寫法建議`,
+            html: `
+              <ul>
+                <li><strong>事前準備：</strong>記錄如何訂定主題（如心智圖聚焦少子化國家差異）、分析既有範例、或比較選用實驗材料（如選豬隻取代狗進行解剖）。</li>
+                <li><strong>執行階段：</strong>詳實寫下困難與替代方案，如實驗買不到乙烯利改用「<strong>成熟香蕉</strong>」催熟、錯用亞甲藍液請教老師後改進、培養渦蟲不斷調整食物與濾水器石頭。失敗經驗更能凸顯解決問題能力。</li>
+                <li><strong>事後整理：</strong>記錄如何將資料系統化（如製成朝代小說流變對照表）、或根據老師批改意見進行勘誤與段落重組。</li>
+                <li><strong>三大寫法：</strong>1. 前後文連貫有邏輯（因果時間軸）；2. 善用「<strong>比較</strong>」法（對比學習前後或多次實作差異）；3. 過程與收穫並重，避免淪為流水帳。</li>
+              </ul>
+            `
+          },
+          {
+            title: `素養能力、獨特性與真實性呈現`,
+            html: `
+              <ul>
+                <li><strong>教授最看重前四大素養：</strong><strong>解決問題</strong>、<strong>學習態度</strong>、<strong>邏輯推理</strong>、<strong>批判思考</strong>。</li>
+                <li><strong>兩種呈現形式：</strong>可採「<strong>列點集中型</strong>」（單頁集中條列能力）或「<strong>融入內文型</strong>」（於執行脈絡中自然佐證），皆須有具體事例。</li>
+                <li><strong>展現獨特性：</strong>連結個人興趣或在地關懷、勇於提出個人詮釋、或記錄自主延伸學習。</li>
+                <li><strong>確保真實性：</strong>清楚標示引註資料、區分課堂所教與自身延伸；團體報告須減少抱怨，改為說明協調策略，並清楚標註同組姓名與個人分工貢獻。</li>
+              </ul>
+            `
+          }
+        ],
+        tableData: {
+          caption: `抽象素養轉化為具體事例的撰寫示範`,
+          headers: [`欲展現的素養能力`, `空泛寫法（應避免）`, `具體事例寫法（建議）`],
+          rows: [
+            [`問題解決與邏輯推理`, `過程中遇到機器人不會動，請教老師後就修好了。`, `先借同學韌體交叉測試以排除程式碼錯誤，再向老師請教確認原韌體故障並更換，成功突破瓶頸。`],
+            [`團隊合作能力`, `組員都不配合，我只好一個人把全部簡報做完。`, `說明組內針對報告架構產生分歧，自己如何整理各人觀點並製作分工表，建立能力互補機制。`],
+            [`資料蒐集與整合`, `我查了很多網路資料，學會整理資訊。`, `說明中文關鍵字資料不足後改用英文至 ScienceDirect 與 Google Patents 比對文獻差異，整合反應機制。`]
+          ]
+        },
+        questions: [
+          {
+            id: `ch3_q1`,
+            type: `mcq`,
+            prompt: `在撰寫「學習過程」以展現個人成長時，手冊特別推薦善用哪一種技巧，例如對照三次跑台測驗或活動參與前後的差異？`,
+            options: [
+              `善用「比較」法，呈現從不會到會或失敗到成功的歷程`,
+              `大量貼上課本全文，證明自己有完成閱讀`,
+              `使用艱深難懂的學術翻譯軟體潤飾全文`,
+              `把組員的筆記截圖全部併入自己的段落`
+            ],
+            correct: `善用「比較」法，呈現從不會到會或失敗到成功的歷程`,
+            explanation: `手冊第 27 頁提出三大寫法建議之一為善用「比較」法，透過比較學習前後、活動前後或多次測驗的差異，凸顯細心度與能力的提升。`
+          },
+          {
+            id: `ch3_q2`,
+            type: `mcq`,
+            prompt: `根據作伙學問卷調查，目前大學教授最重視的一般性素養能力「前四名」是下列哪一組？`,
+            options: [
+              `解決問題、學習態度、邏輯推理、批判思考`,
+              `美工排版、剪輯特效、演講口條、社群經營`,
+              `背誦速率、解題速度、字跡工整、筆記裝飾`,
+              `程式語言、實驗器材採購、英文檢定、競賽金牌`
+            ],
+            correct: `解決問題、學習態度、邏輯推理、批判思考`,
+            explanation: `手冊第 30 頁調查結果指出，教授最重視的前四名一般性素養能力依序為：解決問題、學習態度、邏輯推理、批判思考。`
+          },
+          {
+            id: `ch3_q3`,
+            type: `tf`,
+            prompt: `若在進行實驗或實作作品時遇到失敗、結果不如預期，應將失敗過程從學習歷程檔案中刪除，只保留成功紀錄，以免留下負面印象。`,
+            options: [`正確`, `錯誤`],
+            correct: `錯誤`,
+            explanation: `手冊第 21 頁強調不必擔心失敗扣分！具體記錄在什麼階段遇到困難、如何分析原因並調整方案，反而最能說服教授你具備「問題解決能力」。`
+          },
+          {
+            id: `ch3_q4`,
+            type: `tf`,
+            prompt: `在團體報告中若遇見分工爭議或意見分歧，比起單純抱怨組員不配合，更應該具體寫出分歧議題為何、運用什麼協調策略凝聚共識，並詳列個人貢獻。`,
+            options: [`正確`, `錯誤`],
+            correct: `正確`,
+            explanation: `手冊第 29 頁與實務篇指出，減少抱怨式書寫，轉而說明協調與互補機制，並附上分工細節與個人負責部分，能有效展現團隊合作素養與作品真實性。`
+          },
+          {
+            id: `ch3_q5`,
+            type: `fill_input`,
+            prompt: `手冊說明呈現素養能力的方式非常多元，除了將能力集中在同一頁條列的「列點集中型」外，也可以在敘述過程時自然佐證，稱為「＿＿＿」型。`,
+            hint: `請輸入 4 個中文字`,
+            accepted: [`融入內文`, `融入內文型`],
+            displayAnswer: `融入內文`,
+            explanation: `手冊第 31–32 頁將素養能力呈現舉例為「列點集中型」（如瑞北夜市報告）與「融入內文型」（如亞鉻酸銅催化報告）。`
+          },
+          {
+            id: `ch3_q6`,
+            type: `fill_select`,
+            prompt: `在手冊「乙烯催熟實驗」範例中，學生因取得與調配乙烯利不易，遂轉向思考改用「＿＿＿」取代乙烯來源，展現面對困境時的替代方案思考能力。`,
+            options: [
+              `成熟的香蕉`,
+              `過期的醋酸`,
+              `冰鎮的蘋果汁`,
+              `高濃度鹽水`
+            ],
+            correct: `成熟的香蕉`,
+            explanation: `手冊第 26 頁範例說明，學生想到成熟水果也會產生乙烯氣體，因此決定拿「成熟的香蕉」當作乙烯的提供來源，成功突破瓶頸。`
+          }
+        ]
+      },
+      {
+        id: `ch4`,
+        num: 4,
+        kicker: `第 4 章｜對應導讀手冊 Ch6、Ch7（p.60–p.117）`,
+        title: `六大作品類型呈現建議與常見 QA`,
+        summaryLead: `針對六種最常見的課程成果類型避開地雷，並掌握百字簡述與格式權限規範。`,
+        studyBlocks: [
+          {
+            title: `六大作品類型的常見地雷與解方`,
+            html: `
+              <ul>
+                <li><strong>1. 學習單：</strong>不可只交制式答案，須補上學習脈絡與查找資料、修正思考的過程。</li>
+                <li><strong>2. 課堂活動成果：</strong>不可直接上傳口頭簡報檔，須站在沒聽過簡報的教授立場補充文字說明，並解釋課堂專有名詞（如 <strong>ORID 法、STAR、湯瑪森物品</strong>）。</li>
+                <li><strong>3. 實驗紀錄：</strong>應包含目的、原理、器材、步驟、數據、結果與討論；最嚴重常見問題為<strong>缺少實驗數據</strong>與<strong>缺少結果討論分析</strong>。</li>
+                <li><strong>4. 實作作品（44% 系組參採）：</strong>影音、網站或程式作品切勿只貼單一連結，須以文件補述課程背景、製作動機、過程困難與畫面截圖；並以瀏覽器「<strong>無痕模式</strong>」檢查公開權限。</li>
+                <li><strong>5. 專題報告（含小論文）：</strong>最常遺漏<strong>作品與課程的關聯性</strong>，須補齊課程簡介並確實附上文獻資料來源。</li>
+                <li><strong>6. 綜整式學習紀錄：</strong>彙整多單元時不須照週次全放，應挑選具啟發性單元，並在摘要說明串聯主軸。</li>
+              </ul>
+            `
+          },
+          {
+            title: `常見 QA：百字簡述、學習筆記與比例拿捏`,
+            html: `
+              <ul>
+                <li><strong>百字簡述怎麼寫：</strong>如同新聞好標題！建議先寫「作品主題或課程單元」，再放上「探究發現、個人想法或增進的素養能力」。</li>
+                <li><strong>學習筆記可上傳嗎：</strong>可以，但不能只掃描課本或抄板書，須加入自己的整理架構、額外補充資源與延伸應用。</li>
+                <li><strong>過程與成果比例：</strong>兩者不可偏廢，不能只放心得文字而沒有附上成果截圖或報告佐證（否則缺乏真實性）。</li>
+                <li><strong>跨學期成長呈現：</strong>同科目可將舊作或舊心得作為附錄對照，呈現不同時期的進步軌跡。</li>
+              </ul>
+            `
+          }
+        ],
+        tableData: {
+          caption: `檔案格式與外部連結注意事項`,
+          headers: [`情境問題`, `常見 NG 行為`, `建議處理方式`],
+          rows: [
+            [`影片或簡報檔過大無法壓縮`, `直接放棄上傳，或僅貼一張網址截圖`, `剪輯精華版或存放個人雲端並提供連結，文件內須補齊脈絡、動機與重點畫面截圖`],
+            [`外部連結權限設定`, `僅登入自己帳號測試，教授點開顯示權限不足`, `務必使用「無痕視窗」測試連結，確認任何訪客皆可正常讀取`],
+            [`填寫平臺 100 字簡述`, `只寫「這是高二公民科探究報告」`, `點出主題單元＋具體發現／研究方法＋培養的素養能力，吸引教授點閱`]
+          ]
+        },
+        questions: [
+          {
+            id: `ch4_q1`,
+            type: `mcq`,
+            prompt: `審查自然科「實驗紀錄」類型的課程學習成果時，手冊指出最常見且嚴重的缺漏是下列哪兩個部分？`,
+            options: [
+              `缺少實驗數據與實驗結果討論`,
+              `缺少實驗室平面圖與器材價格`,
+              `缺少教師手寫評語與段考分數`,
+              `缺少實驗衣著裝照片與目錄頁碼`
+            ],
+            correct: `缺少實驗數據與實驗結果討論`,
+            explanation: `手冊第 83 頁指出，許多實驗紀錄花大篇幅列器材與步驟，卻未列出具體量測數據（如層析高度數字）也未分析討論成因，導致看不出是否理解實驗用意。`
+          },
+          {
+            id: `ch4_q2`,
+            type: `mcq`,
+            prompt: `當同學想把課堂的「口頭報告簡報檔」整理為課程學習成果上傳時，下列哪一項做法最符合手冊建議？`,
+            options: [
+              `站在沒聽過口頭報告的教授立場，補上課程背景、文字說明與專有名詞釋義`,
+              `直接將原簡報轉成 PDF 上傳，保持畫面精簡不加文字`,
+              `只放一張簡報封面與口頭報告分數即可`,
+              `刪除所有圖片與圖表，只保留個人心得`
+            ],
+            correct: `站在沒聽過口頭報告的教授立場，補上課程背景、文字說明與專有名詞釋義`,
+            explanation: `手冊第 112 頁強調：不能預設教授了解課堂方式或專有名詞（如 ORID、STAR），須轉換到閱讀者立場補充脈絡與說明，例如說明旅遊簡報最終產出是一本旅遊小書。`
+          },
+          {
+            id: `ch4_q3`,
+            type: `tf`,
+            prompt: `製作「綜整式學習紀錄」時，必須嚴格按照學期上課的順序，把該科目教過的所有單元作業全部放進同一份檔案，才能展現完整性。`,
+            options: [`正確`, `錯誤`],
+            correct: `錯誤`,
+            explanation: `手冊第 101 頁提醒：不一定要全部放入，也不必照課程順序呈現；應重新組織內化後，挑選有特色或具啟發性的單元深入呈現，並說明單元間的關聯主軸。`
+          },
+          {
+            id: `ch4_q4`,
+            type: `tf`,
+            prompt: `如果在課程學習成果中附上影片或網頁連結，建議先開啟瀏覽器的「無痕模式」測試連結，確認權限設定正確無誤後再上傳。`,
+            options: [`正確`, `錯誤`],
+            correct: `正確`,
+            explanation: `手冊第 116 頁圖示與實務篇均提醒：應善用無痕模式檢查外部檔案或網站連結的公開權限，避免審查教授點開時無法存取。`
+          },
+          {
+            id: `ch4_q5`,
+            type: `fill_input`,
+            prompt: `上傳課程學習成果至學習歷程平臺時，系統規定填寫的「＿＿＿」如同新聞的好標題，應精簡濃縮作品主題、探究發現與素養收穫，以吸引教授點閱。`,
+            hint: `請輸入 2 至 4 個中文字`,
+            accepted: [`百字簡述`, `百字心得`, `百字說明`, `簡述`],
+            displayAnswer: `百字簡述`,
+            explanation: `手冊第 110 頁及導讀簡報 QA2 說明：「百字簡述／百字心得」不可省略，應先寫主題或課程單元，再放探究發現、個人想法或增進之素養能力。`
+          },
+          {
+            id: `ch4_q6`,
+            type: `fill_select`,
+            prompt: `針對「專題報告（含小論文）」類型的作品，除了必須確實附上參考文獻資料來源外，學生在整理上傳時最容易遺漏說明的是「＿＿＿」。`,
+            options: [
+              `作品與課程的關聯性`,
+              `小論文比賽的獎金數額`,
+              `報告使用的文書軟體版本`,
+              `同校競爭對手的報告題目`
+            ],
+            correct: `作品與課程的關聯性`,
+            explanation: `導讀簡報 p.28（對應手冊 Ch6-5）明確點出：專題報告（含小論文）常見問題為「容易遺漏作品與課程的關聯性」，應在摘要補上課程簡介加強說明。`
+          }
+        ]
+      },
+      {
+        id: `ch5`,
+        num: 5,
+        kicker: `第 5 章｜對應導讀手冊 Ch8 與實務／認識篇（p.118–p.122）`,
+        title: `高三書審準備、勾選策略與系統傳輸`,
+        summaryLead: `整合高中三年累積的檔案，精準對接大學校系需求，完成高三申請入學書審準備。`,
+        studyBlocks: [
+          {
+            title: `四大蒐集項目、認證機制與勾選件數上限`,
+            html: `
+              <ul>
+                <li><strong>學校負責登錄：</strong>基本資料、修課紀錄（含課程諮詢紀錄，但諮詢紀錄不提交至中央資料庫）。</li>
+                <li><strong>學生負責上傳：</strong>
+                  <ul>
+                    <li><strong>課程學習成果：</strong>須為有學分科目之作業或報告，並經<strong>任課教師認證</strong>；每學年勾選至多 <strong>6 件</strong>由學校提交中央資料庫。</li>
+                    <li><strong>多元表現：</strong>含自主學習、社團、幹部、檢定證照、競賽、服務學習等，<strong>不須教師認證</strong>；每學年勾選至多 <strong>10 件</strong>提交中央資料庫。</li>
+                  </ul>
+                </li>
+                <li><strong>重要區分：</strong>技能檢定或校外競賽非屬學校開課學分，<strong>不可上傳為課程學習成果</strong>，應列入多元表現。</li>
+                <li><strong>大學申請入學勾選上限：</strong>第二階段申請時，一般大學至多勾選 <strong>3 件</strong>課程學習成果（技專校院至多 6 件）與至多 <strong>10 件</strong>多元表現。</li>
+              </ul>
+            `
+          },
+          {
+            title: `高三書審三步驟與 AI 使用原則`,
+            html: `
+              <ol>
+                <li><strong>充分瞭解目標校系特質：</strong>以四大正式管道為主——<strong>校系分則</strong>、<strong>書面資料準備指引</strong>、<strong>校系網站</strong>、<strong>ColleGo 網站</strong>（面試著重檔案細節，勿迷信網路考古題）。</li>
+                <li><strong>依適配性勾選（重質不重量）：</strong>不必湊滿件數；不必因高一二作品不夠完美或無直接學科對應而趕在高三重做。</li>
+                <li><strong>在「學習歷程自述」綜整關聯：</strong>含高中學習歷程反思、就讀動機、未來學習計畫與生涯規劃，用勾選作品作為例證並針對個別校系客製化。</li>
+                <li><strong>生成式 AI 使用建議：</strong>可協助整理資料、統整重點或優化表達，但仍須以自身真實理解與參與為基礎，確保資料真實性。</li>
+              </ol>
+            `
+          }
+        ],
+        tableData: {
+          caption: `課程學習成果與多元表現制度規範比較表`,
+          headers: [`比較項目`, `課程學習成果`, `多元表現`],
+          rows: [
+            [`內容來源`, `學校有學分課程（必修／選修）之產出`, `修課外之自主學習、社團、幹部、競賽、證照、服務`],
+            [`是否需教師認證`, `是（需經任課教師認證）`, `否（學生自主把關資料一致性）`],
+            [`每學年提交中央資料庫上限`, `至多 6 件`, `至多 10 件`],
+            [`大學申請入學二階勾選上限`, `至多 3 件（技專至多 6 件）`, `至多 10 件`]
+          ]
+        },
+        questions: [
+          {
+            id: `ch5_q1`,
+            type: `mcq`,
+            prompt: `高三參加「大學申請入學」第二階段報名時，針對單一申請校系，學生至多可從中央資料庫勾選幾件「課程學習成果」與幾件「多元表現」？`,
+            options: [
+              `課程學習成果至多 6 件、多元表現至多 6 件`,
+              `課程學習成果至多 5 件、多元表現至多 15 件`,
+              `課程學習成果至多 3 件、多元表現至多 10 件`,
+              `課程學習成果與多元表現皆無件數上限`
+            ],
+            correct: `課程學習成果至多 3 件、多元表現至多 10 件`,
+            explanation: `手冊第 118 頁及實務篇流程圖明確記載：申請大學時至多勾選 3 件課程學習成果（技專至多 6 件）與 10 件多元表現。`
+          },
+          {
+            id: `ch5_q2`,
+            type: `mcq`,
+            prompt: `下列哪一項經歷或成果「非屬」學校課程計畫開設學分之科目產出，因此不可作為「課程學習成果」，而應歸類在「多元表現」？`,
+            options: [
+              `校外英語檢定證照與全國性程式競賽獲獎紀錄`,
+              `部定必修自然科探究與實作的實驗紀錄`,
+              `校訂多元選修課程產出的機器人實作成果`,
+              `加深加廣選修公民課撰寫的小論文初稿`
+            ],
+            correct: `校外英語檢定證照與全國性程式競賽獲獎紀錄`,
+            explanation: `實務篇 2-2 注意事項指出：技能檢定或競賽非屬學校課程計畫開設學分之教學科目，請勿作為課程學習成果，應另外列入多元表現。`
+          },
+          {
+            id: `ch5_q3`,
+            type: `tf`,
+            prompt: `高三勾選課程學習成果時，即使有些檔案與申請校系完全看不出關聯性，也應該盡量把 3 件的額度湊滿，才不會在審查時顯得資料太少。`,
+            options: [`正確`, `錯誤`],
+            correct: `錯誤`,
+            explanation: `手冊第 119 頁指出，大學教授重質不重量，上傳看不出與校系關聯性的檔案反而未必有利；重點是每項資料都能傳達具備學系重視特質的訊息。`
+          },
+          {
+            id: `ch5_q4`,
+            type: `tf`,
+            prompt: `高三生若使用生成式人工智慧（AI）協助整理資料、統整重點或優化文字表達，仍應以自身的實際理解與參與為基礎，確保學習歷程檔案的真實性。`,
+            options: [`正確`, `錯誤`],
+            correct: `正確`,
+            explanation: `手冊第 121 頁「資料真實性與生成式人工智慧的使用建議」明確說明：可藉 AI 協助整理與優化表達，但成果呈現仍須基於自身理解與參與，確保內容真實反映實際歷程。`
+          },
+          {
+            id: `ch5_q5`,
+            type: `fill_input`,
+            prompt: `為確保上傳資料真實性並與課堂所學相關，高中生上傳至學校平臺的「課程學習成果」必須經過「＿＿＿」認證；而多元表現則不須經過此認證。`,
+            hint: `請輸入 4 個中文字`,
+            accepted: [`任課教師`, `任課老師`, `授課教師`, `授課老師`],
+            displayAnswer: `任課教師`,
+            explanation: `手冊第 7 頁與認識篇說明：課程學習成果需經「任課教師」認證（確保為學生自己所做且與課堂內容相關），多元表現則不須教師認證。`
+          },
+          {
+            id: `ch5_q6`,
+            type: `fill_select`,
+            prompt: `高三生在了解目標校系重視的能力特質時，除了校系分則、書面資料準備指引與校系網站外，手冊建議以「＿＿＿」等四大正式資訊管道為主，避免盲從網路考古題。`,
+            options: [
+              `ColleGo 網站`,
+              `匿名論壇考古題`,
+              `補習班宣傳簡章`,
+              `網紅升學經驗談`
+            ],
+            correct: `ColleGo 網站`,
+            explanation: `手冊第 118–119 頁指出四大正式管道為：校系分則、書面資料準備指引、校系網站、ColleGo 網站；實際面試多著重檔案細節，應以正式管道為主。`
+          }
+        ]
+      }
+    ];
+
+    const TYPE_LABELS = {
+      mcq: `選擇題（四選一）`,
+      tf: `是非題`,
+      fill_input: `填充題（輸入關鍵詞／數字）`,
+      fill_select: `填充題（下拉選填關鍵詞）`
+    };
+
+    const TYPE_SHORT = {
+      mcq: `選擇題`,
+      tf: `是非題`,
+      fill_input: `填充題`,
+      fill_select: `填充題`
+    };
+
+    // =========================================================================
+    // 2. APPLICATION STATE & PERSISTENCE
+    // =========================================================================
+    const INITIAL_STATE = {
+      student: null,
+      activeChapterIndex: 0,
+      unlockedChapterMax: 0,
+      viewMode: `study`, // 'study' | 'quiz' | 'review' | 'report'
+      currentQuestionIndex: 0,
+      answers: {},
+      completedAt: null
+    };
+
+    let appState = cloneDefaultState();
+    let tempSelection = ``; // Holds unsubmitted selection for current question
+    let showQuizStudyDrawer = false;
+    let reportFilter = `all`; // 'all' | 'wrong' | 'ch0'..'ch4'
+    let pdfStatusMsg = ``;
+
+    function cloneDefaultState() {
+      return {
+        student: null,
+        activeChapterIndex: 0,
+        unlockedChapterMax: 0,
+        viewMode: `study`,
+        currentQuestionIndex: 0,
+        answers: {},
+        completedAt: null
+      };
+    }
+
+    async function persistState() {
+      try {
+        if (window.notebookAppApi && typeof window.notebookAppApi.setAppState === `function`) {
+          await window.notebookAppApi.setAppState({
+            student: appState.student,
+            activeChapterIndex: appState.activeChapterIndex,
+            unlockedChapterMax: appState.unlockedChapterMax,
+            viewMode: appState.viewMode,
+            currentQuestionIndex: appState.currentQuestionIndex,
+            answers: appState.answers,
+            completedAt: appState.completedAt
+          });
+        }
+      } catch (err) {
+        // Keep runtime resilient in preview environments
+      }
+    }
+
+    function restoreFromState(saved) {
+      if (!saved || typeof saved !== `object`) return;
+      appState.student = saved.student && typeof saved.student === `object` ? saved.student : null;
+      appState.activeChapterIndex = typeof saved.activeChapterIndex === `number` ? saved.activeChapterIndex : 0;
+      appState.unlockedChapterMax = typeof saved.unlockedChapterMax === `number` ? saved.unlockedChapterMax : 0;
+      appState.viewMode = typeof saved.viewMode === `string` ? saved.viewMode : `study`;
+      appState.currentQuestionIndex = typeof saved.currentQuestionIndex === `number` ? saved.currentQuestionIndex : 0;
+      appState.answers = saved.answers && typeof saved.answers === `object` ? saved.answers : {};
+      appState.completedAt = saved.completedAt ? saved.completedAt : null;
+    }
+
+    // =========================================================================
+    // 3. HELPER UTILITIES
+    // =========================================================================
+    function escapeHtml(str) {
+      if (str === null || str === undefined) return ``;
+      return String(str)
+        .replace(/&/g, `&amp;`)
+        .replace(/</g, `&lt;`)
+        .replace(/>/g, `&gt;`)
+        .replace(/"/g, `&quot;`)
+        .replace(/'/g, `&#39;`);
+    }
+
+    function normalizeAnswerText(val) {
+      if (!val) return ``;
+      // Convert full-width alphanumeric digits to half-width, trim spaces
+      return String(val)
+        .trim()
+        .replace(/[！-～]/g, function(ch) {
+          return String.fromCharCode(ch.charCodeAt(0) - 0xfee0);
+        })
+        .replace(/\s+/g, ``)
+        .toLowerCase();
+    }
+
+    function isChapterCompleted(chIdx) {
+      const ch = CHAPTERS[chIdx];
+      if (!ch) return false;
+      return ch.questions.every(function(q) {
+        return Boolean(appState.answers[q.id]);
+      });
+    }
+
+    function isAllCompleted() {
+      for (let i = 0; i < CHAPTERS.length; i++) {
+        if (!isChapterCompleted(i)) return false;
+      }
+      return true;
+    }
+
+    function getChapterStats(chIdx) {
+      const ch = CHAPTERS[chIdx];
+      let correctCount = 0;
+      let answeredCount = 0;
+      ch.questions.forEach(function(q) {
+        const rec = appState.answers[q.id];
+        if (rec) {
+          answeredCount++;
+          if (rec.isCorrect) correctCount++;
+        }
+      });
+      const total = ch.questions.length;
+      const pct = Math.round((correctCount / total) * 100);
+      return { correctCount: correctCount, answeredCount: answeredCount, total: total, pct: pct };
+    }
+
+    function getOverallStats() {
+      let totalQ = 0;
+      let totalCorrect = 0;
+      const byType = {
+        mcq: { label: `選擇題（四選一）`, correct: 0, total: 0 },
+        tf: { label: `是非題`, correct: 0, total: 0 },
+        fill: { label: `關鍵詞填充題`, correct: 0, total: 0 }
+      };
+      const chList = [];
+
+      CHAPTERS.forEach(function(ch, idx) {
+        const st = getChapterStats(idx);
+        chList.push({
+          idx: idx,
+          num: ch.num,
+          title: ch.title,
+          correct: st.correctCount,
+          total: st.total,
+          pct: st.pct
+        });
+        ch.questions.forEach(function(q) {
+          totalQ++;
+          const rec = appState.answers[q.id];
+          const isOk = rec && rec.isCorrect;
+          if (isOk) totalCorrect++;
+          const tKey = (q.type === `fill_input` || q.type === `fill_select`) ? `fill` : q.type;
+          byType[tKey].total++;
+          if (isOk) byType[tKey].correct++;
+        });
+      });
+
+      const overallScore = Math.round((totalCorrect / totalQ) * 100);
+      const sorted = chList.slice().sort(function(a, b) { return b.pct - a.pct; });
+      const bestCh = sorted[0];
+      const weakestCh = sorted[sorted.length - 1];
+
+      return {
+        totalQ: totalQ,
+        totalCorrect: totalCorrect,
+        overallScore: overallScore,
+        byType: byType,
+        chapters: chList,
+        bestCh: bestCh,
+        weakestCh: weakestCh
+      };
+    }
+
+    function getDisplayCorrectAnswer(q) {
+      if (q.type === `fill_input`) return q.displayAnswer;
+      return q.correct;
+    }
+
+    function refreshIcons() {
+      if (window.lucide && typeof window.lucide.createIcons === `function`) {
+        window.lucide.createIcons();
+      }
+    }
+
+    function getCssToken(name) {
+      return getComputedStyle(document.documentElement).getPropertyValue(name).trim();
+    }
+
+    // =========================================================================
+    // 4. LOGIN & IDENTITY VALIDATION HANDLERS (Hoisted Functions)
+    // =========================================================================
+    function showFieldError(field, msg) {
+      const group = document.getElementById(`group-${field}`);
+      const input = document.getElementById(`login-${field}`);
+      const errEl = document.getElementById(`error-${field}`);
+      if (group) group.classList.add(`field-group--error`);
+      if (input) input.classList.add(`input-box--error`);
+      if (errEl) {
+        errEl.textContent = msg;
+        errEl.classList.remove(`hidden`);
+      }
+    }
+
+    function clearFieldError(field) {
+      const group = document.getElementById(`group-${field}`);
+      const input = document.getElementById(`login-${field}`);
+      const errEl = document.getElementById(`error-${field}`);
+      if (group) group.classList.remove(`field-group--error`);
+      if (input) input.classList.remove(`input-box--error`);
+      if (errEl) {
+        errEl.textContent = ``;
+        errEl.classList.add(`hidden`);
+      }
+    }
+
+    async function handleLoginSubmit(event) {
+      event.preventDefault();
+      const emailEl = document.getElementById(`login-email`);
+      const nameEl = document.getElementById(`login-name`);
+      const sidEl = document.getElementById(`login-student-id`);
+      if (!emailEl || !nameEl || !sidEl) return;
+
+      const email = emailEl.value.trim().toLowerCase();
+      const name = nameEl.value.trim();
+      const studentId = sidEl.value.trim();
+
+      let valid = true;
+
+      // Validate school email domain strictly: <local>@stu.cchs.chc.edu.tw
+      const emailRegex = /^[a-z0-9._-]+@stu\.cchs\.chc\.edu\.tw$/;
+      if (!email) {
+        showFieldError(`email`, `請輸入學校信箱帳號。信箱不可為空白，須以 @stu.cchs.chc.edu.tw 結尾。`);
+        valid = false;
+      } else if (!emailRegex.test(email)) {
+        showFieldError(`email`, `信箱格式不符：僅限使用 @stu.cchs.chc.edu.tw 學校信箱網域（例如 s113001@stu.cchs.chc.edu.tw），請確認拼字是否正確。`);
+        valid = false;
+      } else {
+        clearFieldError(`email`);
+      }
+
+      // Validate Chinese Name
+      const chineseCharRegex = /^[\u4e00-\u9fff\u3400-\u4dbf·•]{2,15}$/;
+      if (!name) {
+        showFieldError(`name`, `請輸入中文姓名，將顯示於測驗總結與 PDF 診斷報告中。`);
+        valid = false;
+      } else if (!chineseCharRegex.test(name)) {
+        showFieldError(`name`, `請輸入 2 至 15 字的完整中文姓名（不可夾雜空白、英文或數字）。`);
+        valid = false;
+      } else {
+        clearFieldError(`name`);
+      }
+
+      // Validate Student ID
+      const sidRegex = /^[A-Za-z0-9]{4,12}$/;
+      if (!studentId) {
+        showFieldError(`student-id`, `請輸入您的學校學號。`);
+        valid = false;
+      } else if (!sidRegex.test(studentId)) {
+        showFieldError(`student-id`, `學號格式不符：請輸入 4 至 12 碼英數字學號（不可包含空白或特殊符號）。`);
+        valid = false;
+      } else {
+        clearFieldError(`student-id`);
+      }
+
+      if (!valid) return;
+
+      appState.student = {
+        email: email,
+        name: name,
+        studentId: studentId.toUpperCase(),
+        loginAt: new Date().toLocaleString(`zh-TW`, { hour12: false })
+      };
+      appState.activeChapterIndex = 0;
+      appState.unlockedChapterMax = 0;
+      appState.viewMode = `study`;
+      appState.currentQuestionIndex = 0;
+      appState.answers = {};
+      appState.completedAt = null;
+      tempSelection = ``;
+
+      await persistState();
+      renderApp();
+    }
+
+    async function handleLogoutClick(btn) {
+      if (!btn) return;
+      if (btn.dataset.armed !== `true`) {
+        btn.dataset.armed = `true`;
+        btn.textContent = `再按一次確認切換（將重設作答紀錄）`;
+        btn.classList.add(`button--danger-armed`);
+        setTimeout(function() {
+          if (btn && btn.dataset.armed === `true`) {
+            btn.dataset.armed = `false`;
+            btn.textContent = `切換身分`;
+            btn.classList.remove(`button--danger-armed`);
+          }
+        }, 4500);
+        return;
+      }
+      btn.dataset.armed = `false`;
+      btn.textContent = `切換身分`;
+      btn.classList.remove(`button--danger-armed`);
+      appState = cloneDefaultState();
+      tempSelection = ``;
+      pdfStatusMsg = ``;
+      await persistState();
+      renderApp();
+    }
+
+    // =========================================================================
+    // 5. NAVIGATION & QUIZ INTERACTION HANDLERS (Hoisted Functions)
+    // =========================================================================
+    async function selectChapter(chIdx) {
+      if (chIdx > appState.unlockedChapterMax) return;
+      appState.activeChapterIndex = chIdx;
+      tempSelection = ``;
+      showQuizStudyDrawer = false;
+
+      if (chIdx === CHAPTERS.length) {
+        appState.viewMode = `report`;
+      } else if (isChapterCompleted(chIdx)) {
+        appState.viewMode = `study`;
+      } else {
+        // Jump back to study summary if chapter hasn't been started yet, else resume quiz
+        const ch = CHAPTERS[chIdx];
+        const answeredInCh = ch.questions.filter(function(q) { return Boolean(appState.answers[q.id]); }).length;
+        if (answeredInCh > 0) {
+          appState.viewMode = `quiz`;
+          // Find first unanswered question, or last question if waiting to advance
+          let firstUnanswered = ch.questions.findIndex(function(q) { return !appState.answers[q.id]; });
+          appState.currentQuestionIndex = firstUnanswered === -1 ? ch.questions.length - 1 : firstUnanswered;
+        } else {
+          appState.viewMode = `study`;
+          appState.currentQuestionIndex = 0;
+        }
+      }
+      await persistState();
+      renderWorkspace();
+      window.scrollTo({ top: 0, behavior: `smooth` });
+    }
+
+    async function startChapterQuiz() {
+      const ch = CHAPTERS[appState.activeChapterIndex];
+      if (!ch) return;
+      const firstUnanswered = ch.questions.findIndex(function(q) { return !appState.answers[q.id]; });
+      appState.currentQuestionIndex = firstUnanswered === -1 ? 0 : firstUnanswered;
+      appState.viewMode = `quiz`;
+      tempSelection = ``;
+      showQuizStudyDrawer = false;
+      await persistState();
+      renderWorkspace();
+      window.scrollTo({ top: 0, behavior: `smooth` });
+    }
+
+    async function switchChapterView(mode) {
+      appState.viewMode = mode;
+      showQuizStudyDrawer = false;
+      await persistState();
+      renderWorkspace();
+    }
+
+    function toggleQuizStudyDrawer() {
+      showQuizStudyDrawer = !showQuizStudyDrawer;
+      renderMainContent();
+    }
+
+    function chooseOption(val) {
+      const ch = CHAPTERS[appState.activeChapterIndex];
+      const q = ch.questions[appState.currentQuestionIndex];
+      if (appState.answers[q.id]) return; // Already submitted
+      tempSelection = val;
+      renderMainContent();
+    }
+
+    function handleInputTemp(val) {
+      tempSelection = val;
+      const errBox = document.getElementById(`quiz-inline-error`);
+      if (errBox) errBox.classList.add(`hidden`);
+    }
+
+    async function submitCurrentAnswer() {
+      const chIdx = appState.activeChapterIndex;
+      const ch = CHAPTERS[chIdx];
+      const q = ch.questions[appState.currentQuestionIndex];
+      if (!q || appState.answers[q.id]) return;
+
+      let chosen = tempSelection;
+      if (q.type === `fill_input`) {
+        const inp = document.getElementById(`fill-text-input`);
+        chosen = inp ? inp.value.trim() : tempSelection.trim();
+      } else if (q.type === `fill_select`) {
+        const sel = document.getElementById(`fill-select-input`);
+        chosen = sel ? sel.value : tempSelection;
+      }
+
+      if (!chosen) {
+        const errBox = document.getElementById(`quiz-inline-error`);
+        if (errBox) {
+          errBox.textContent = q.type === `fill_input`
+            ? `請先於作答欄輸入關鍵詞或數字後再送出。`
+            : `請先選擇一個答案後再確認送出。`;
+          errBox.classList.remove(`hidden`);
+        }
+        return;
+      }
+
+      let isCorrect = false;
+      if (q.type === `fill_input`) {
+        const normUser = normalizeAnswerText(chosen);
+        isCorrect = q.accepted.some(function(acc) {
+          return normalizeAnswerText(acc) === normUser;
+        });
+      } else {
+        isCorrect = chosen === q.correct;
+      }
+
+      appState.answers[q.id] = {
+        userAnswer: chosen,
+        isCorrect: isCorrect,
+        submittedAt: new Date().toLocaleTimeString(`zh-TW`, { hour12: false })
+      };
+
+      // Check if entire chapter just finished
+      if (isChapterCompleted(chIdx)) {
+        if (appState.unlockedChapterMax <= chIdx) {
+          appState.unlockedChapterMax = chIdx + 1;
+        }
+        if (isAllCompleted() && !appState.completedAt) {
+          appState.completedAt = new Date().toLocaleString(`zh-TW`, { hour12: false });
+        }
+      }
+
+      tempSelection = ``;
+      await persistState();
+      renderWorkspace();
+    }
+
+    async function advanceNextQuestion() {
+      const chIdx = appState.activeChapterIndex;
+      const ch = CHAPTERS[chIdx];
+
+      if (appState.currentQuestionIndex < ch.questions.length - 1) {
+        appState.currentQuestionIndex++;
+        tempSelection = ``;
+        showQuizStudyDrawer = false;
+        await persistState();
+        renderWorkspace();
+        window.scrollTo({ top: 0, behavior: `smooth` });
+      } else {
+        // Chapter finished -> advance to next chapter or final report
+        if (chIdx < CHAPTERS.length - 1) {
+          appState.activeChapterIndex = chIdx + 1;
+          appState.viewMode = `study`;
+          appState.currentQuestionIndex = 0;
+        } else {
+          appState.activeChapterIndex = CHAPTERS.length;
+          appState.viewMode = `report`;
+        }
+        tempSelection = ``;
+        showQuizStudyDrawer = false;
+        await persistState();
+        renderWorkspace();
+        window.scrollTo({ top: 0, behavior: `smooth` });
+      }
+    }
+
+    function setReportFilter(filterKey) {
+      reportFilter = filterKey;
+      renderMainContent();
+    }
+
+    function triggerBrowserPrint() {
+      window.print();
+    }
+
+    // =========================================================================
+    // 6. PURE-JS CANVAS-TO-PDF GENERATOR (ZERO EXTERNAL LIBS)
+    // =========================================================================
+    function downloadGeneratedPdf() {
+      const btn = document.getElementById(`btn-download-pdf`);
+      const statusEl = document.getElementById(`pdf-status-msg`);
+      if (btn) btn.disabled = true;
+      if (statusEl) {
+        statusEl.textContent = `正在排版產生 A4 診斷報告 PDF，請稍候…`;
+        statusEl.classList.remove(`hidden`);
+      }
+
+      setTimeout(function() {
+        try {
+          const pdfBytes = buildDiagnosticPdfBytes();
+          const blob = new Blob([pdfBytes], { type: `application/pdf` });
+          const url = URL.createObjectURL(blob);
+          const safeSid = appState.student ? appState.student.studentId : `student`;
+          const safeName = appState.student ? appState.student.name : `report`;
+          const filename = `學習歷程呈現指南測驗報告_${safeSid}_${safeName}.pdf`;
+
+          const link = document.createElement(`a`);
+          link.href = url;
+          link.download = filename;
+          document.body.appendChild(link);
+          link.click();
+          document.body.removeChild(link);
+          setTimeout(function() { URL.revokeObjectURL(url); }, 3000);
+
+          pdfStatusMsg = `PDF 檔案「${filename}」已產生並觸發下載。若您的瀏覽器預覽視窗限制直接下載，請使用右側「列印／系統另存 PDF」。`;
+        } catch (err) {
+          pdfStatusMsg = `直接下載受限，請改用右側「列印／系統另存 PDF」功能存成 PDF 檔案。`;
+        }
+        if (btn) btn.disabled = false;
+        if (statusEl) {
+          statusEl.textContent = pdfStatusMsg;
+          statusEl.classList.remove(`hidden`);
+        }
+      }, 60);
+    }
+
+    function buildDiagnosticPdfBytes() {
+      const PAGE_W = 1240;
+      const PAGE_H = 1754;
+      const MARGIN = 72;
+      const CONTENT_W = PAGE_W - MARGIN * 2;
+      const FOOTER_Y = PAGE_H - 54;
+
+      const cPrimary = getCssToken(`--primary`) || `#162e51`;
+      const cTertiary = getCssToken(`--tertiary`) || `#1a569e`;
+      const cInk = getCssToken(`--on-surface`) || `#0b0c0c`;
+      const cMuted = getCssToken(`--on-surface-variant`) || `#505a5f`;
+      const cRule = getCssToken(`--outline-variant`) || `#b1b4b6`;
+      const cFill = getCssToken(`--surface-container-low`) || `#f3f2f1`;
+      const cPos = getCssToken(`--positive`) || `#1d5e3a`;
+      const cPosBg = getCssToken(`--positive-container`) || `#e6f4ea`;
+      const cErr = getCssToken(`--error`) || `#d4351c`;
+      const cBg = getCssToken(`--background`) || `#ffffff`;
+
+      const fontSans = `'Noto Sans TC', 'Public Sans', 'PingFang TC', 'Microsoft JhengHei', sans-serif`;
+      const pages = [];
+
+      function newPageCanvas() {
+        const cv = document.createElement(`canvas`);
+        cv.width = PAGE_W;
+        cv.height = PAGE_H;
+        const ctx = cv.getContext(`2d`);
+        ctx.fillStyle = cBg;
+        ctx.fillRect(0, 0, PAGE_W, PAGE_H);
+        // Top navy bar
+        ctx.fillStyle = cPrimary;
+        ctx.fillRect(0, 0, PAGE_W, 14);
+        pages.push({ canvas: cv, ctx: ctx });
+        return { ctx: ctx, y: MARGIN + 10 };
+      }
+
+      function wrapLines(ctx, text, maxWidth) {
+        const chars = Array.from(String(text || ``));
+        const lines = [];
+        let current = ``;
+        for (let i = 0; i < chars.length; i++) {
+          const ch = chars[i];
+          if (ch === `\n`) {
+            lines.push(current);
+            current = ``;
+            continue;
+          }
+          const test = current + ch;
+          if (ctx.measureText(test).width > maxWidth && current.length > 0) {
+            lines.push(current);
+            current = ch;
+          } else {
+            current = test;
+          }
+        }
+        if (current.length > 0) lines.push(current);
+        return lines;
+      }
+
+      const stats = getOverallStats();
+      const st = appState.student || { name: ``, studentId: ``, email: ``, loginAt: `` };
+
+      // --- PAGE 1: Header, Student Profile, Score KPIs, Chapter Breakdown ---
+      let cur = newPageCanvas();
+      let ctx = cur.ctx;
+      let y = cur.y;
+
+      ctx.fillStyle = cTertiary;
+      ctx.font = `700 20px ${fontSans}`;
+      ctx.fillText(`學習歷程檔案導讀系統｜課程學習成果呈現指南`, MARGIN, y);
+      y += 38;
+
+      ctx.fillStyle = cInk;
+      ctx.font = `800 36px ${fontSans}`;
+      ctx.fillText(`學生學習診斷與作答紀錄報告`, MARGIN, y);
+      y += 22;
+
+      ctx.fillStyle = cInk;
+      ctx.fillRect(MARGIN, y, CONTENT_W, 3);
+      y += 26;
+
+      // Student Info Box
+      ctx.fillStyle = cFill;
+      ctx.fillRect(MARGIN, y, CONTENT_W, 128);
+      ctx.fillStyle = cTertiary;
+      ctx.fillRect(MARGIN, y, 8, 128);
+
+      ctx.fillStyle = cMuted;
+      ctx.font = `700 18px ${fontSans}`;
+      ctx.fillText(`中文姓名`, MARGIN + 28, y + 36);
+      ctx.fillText(`學號`, MARGIN + 340, y + 36);
+      ctx.fillText(`學校信箱帳號`, MARGIN + 580, y + 36);
+
+      ctx.fillStyle = cInk;
+      ctx.font = `800 24px ${fontSans}`;
+      ctx.fillText(st.name, MARGIN + 28, y + 72);
+      ctx.fillText(st.studentId, MARGIN + 340, y + 72);
+      ctx.font = `700 20px ${fontSans}`;
+      ctx.fillText(st.email, MARGIN + 580, y + 72);
+
+      ctx.fillStyle = cMuted;
+      ctx.font = `400 16px ${fontSans}`;
+      ctx.fillText(`完測時間：${appState.completedAt || new Date().toLocaleString(`zh-TW`, { hour12: false })}`, MARGIN + 28, y + 108);
+      y += 158;
+
+      // 4 KPI Cards
+      const kpiW = (CONTENT_W - 45) / 4;
+      const kpis = [
+        { label: `總測驗成績`, val: `${stats.overallScore} 分`, sub: `答對 ${stats.totalCorrect} / ${stats.totalQ} 題`, accent: cPrimary },
+        { label: `選擇題表現`, val: `${stats.byType.mcq.correct} / ${stats.byType.mcq.total} 題`, sub: `答對率 ${Math.round(stats.byType.mcq.correct / stats.byType.mcq.total * 100)}%`, accent: cTertiary },
+        { label: `是非題表現`, val: `${stats.byType.tf.correct} / ${stats.byType.tf.total} 題`, sub: `答對率 ${Math.round(stats.byType.tf.correct / stats.byType.tf.total * 100)}%`, accent: cTertiary },
+        { label: `關鍵詞填充`, val: `${stats.byType.fill.correct} / ${stats.byType.fill.total} 題`, sub: `答對率 ${Math.round(stats.byType.fill.correct / stats.byType.fill.total * 100)}%`, accent: cPos }
+      ];
+      kpis.forEach(function(k, i) {
+        const kx = MARGIN + i * (kpiW + 15);
+        ctx.fillStyle = cFill;
+        ctx.fillRect(kx, y, kpiW, 118);
+        ctx.fillStyle = k.accent;
+        ctx.fillRect(kx, y, 7, 118);
+        ctx.fillStyle = cMuted;
+        ctx.font = `700 17px ${fontSans}`;
+        ctx.fillText(k.label, kx + 20, y + 32);
+        ctx.fillStyle = cInk;
+        ctx.font = `800 30px ${fontSans}`;
+        ctx.fillText(k.val, kx + 20, y + 72);
+        ctx.fillStyle = cMuted;
+        ctx.font = `400 16px ${fontSans}`;
+        ctx.fillText(k.sub, kx + 20, y + 102);
+      });
+      y += 154;
+
+      // Chapter Table Header
+      ctx.fillStyle = cInk;
+      ctx.font = `800 24px ${fontSans}`;
+      ctx.fillText(`各章節測驗成績與學習診斷`, MARGIN, y);
+      y += 24;
+
+      ctx.fillStyle = cInk;
+      ctx.fillRect(MARGIN, y, CONTENT_W, 2);
+      y += 30;
+      ctx.font = `700 18px ${fontSans}`;
+      ctx.fillText(`章節名稱`, MARGIN + 8, y);
+      ctx.fillText(`答對題數`, MARGIN + 620, y);
+      ctx.fillText(`得分`, MARGIN + 770, y);
+      ctx.fillText(`掌握程度`, MARGIN + 910, y);
+      y += 14;
+      ctx.fillStyle = cInk;
+      ctx.fillRect(MARGIN, y, CONTENT_W, 2);
+
+      stats.chapters.forEach(function(ch) {
+        y += 38;
+        ctx.fillStyle = cInk;
+        ctx.font = `700 18px ${fontSans}`;
+        ctx.fillText(`第 ${ch.num} 章：${ch.title}`, MARGIN + 8, y);
+        ctx.font = `400 18px ${fontSans}`;
+        ctx.fillText(`${ch.correct} / ${ch.total} 題`, MARGIN + 620, y);
+        ctx.fillText(`${ch.pct} 分`, MARGIN + 770, y);
+
+        const level = ch.pct >= 83 ? `精熟` : ch.pct >= 67 ? `良好` : `建議複習`;
+        ctx.fillStyle = ch.pct >= 83 ? cPos : ch.pct >= 67 ? cTertiary : cErr;
+        ctx.font = `700 18px ${fontSans}`;
+        ctx.fillText(level, MARGIN + 910, y);
+
+        y += 16;
+        ctx.fillStyle = cRule;
+        ctx.fillRect(MARGIN, y, CONTENT_W, 1);
+      });
+      y += 42;
+
+      // Diagnostic Summary Callout
+      ctx.fillStyle = cFill;
+      ctx.fillRect(MARGIN, y, CONTENT_W, 110);
+      ctx.fillStyle = cPrimary;
+      ctx.fillRect(MARGIN, y, 8, 110);
+      ctx.fillStyle = cInk;
+      ctx.font = `700 19px ${fontSans}`;
+      ctx.fillText(`綜合診斷與複習建議`, MARGIN + 24, y + 34);
+      ctx.font = `400 18px ${fontSans}`;
+      const diagText = `表現最佳為「第 ${stats.bestCh.num} 章 ${stats.bestCh.title}」（${stats.bestCh.pct} 分）。` +
+        (stats.weakestCh.pct < 100
+          ? `建議優先回顧「第 ${stats.weakestCh.num} 章 ${stats.weakestCh.title}」（${stats.weakestCh.pct} 分）並參閱下方錯題解析，強化該單元關鍵觀念。`
+          : `各章觀念皆已完整精熟，可著手運用本指南原則檢視並整理個人課程學習成果！`);
+      const diagLines = wrapLines(ctx, diagText, CONTENT_W - 48);
+      diagLines.slice(0, 2).forEach(function(line, li) {
+        ctx.fillText(line, MARGIN + 24, y + 66 + li * 28);
+      });
+      y += 146;
+
+      // --- DETAILED 30 QUESTIONS ACROSS PAGES ---
+      ctx.fillStyle = cInk;
+      ctx.font = `800 24px ${fontSans}`;
+      ctx.fillText(`詳細作答紀錄與解析（共 30 題）`, MARGIN, y);
+      y += 28;
+
+      CHAPTERS.forEach(function(ch) {
+        // Chapter Subheader
+        if (y + 90 > FOOTER_Y - 20) {
+          cur = newPageCanvas();
+          ctx = cur.ctx;
+          y = cur.y;
+        }
+        ctx.fillStyle = cPrimary;
+        ctx.fillRect(MARGIN, y, CONTENT_W, 38);
+        ctx.fillStyle = cBg;
+        ctx.font = `700 19px ${fontSans}`;
+        ctx.fillText(`第 ${ch.num} 章｜${ch.title}`, MARGIN + 16, y + 26);
+        y += 52;
+
+        ch.questions.forEach(function(q, qi) {
+          const rec = appState.answers[q.id] || { userAnswer: `未作答`, isCorrect: false };
+          const corrAns = getDisplayCorrectAnswer(q);
+          ctx.font = `700 18px ${fontSans}`;
+          const qLines = wrapLines(ctx, `Q${qi + 1} [${TYPE_SHORT[q.type]}] ${q.prompt}`, CONTENT_W - 36);
+          ctx.font = `400 16px ${fontSans}`;
+          const expLines = wrapLines(ctx, `解析：${q.explanation}`, CONTENT_W - 36);
+
+          const cardH = 30 + qLines.length * 25 + 32 + expLines.length * 23 + 22;
+
+          if (y + cardH > FOOTER_Y - 20) {
+            cur = newPageCanvas();
+            ctx = cur.ctx;
+            y = cur.y;
+          }
+
+          // Card background / accent
+          ctx.fillStyle = rec.isCorrect ? cPosBg : cFill;
+          ctx.fillRect(MARGIN, y, CONTENT_W, cardH - 12);
+          ctx.fillStyle = rec.isCorrect ? cPos : cErr;
+          ctx.fillRect(MARGIN, y, 6, cardH - 12);
+
+          // Status badge text
+          ctx.font = `700 16px ${fontSans}`;
+          ctx.fillStyle = rec.isCorrect ? cPos : cErr;
+          ctx.fillText(rec.isCorrect ? `✓ 正確` : `✗ 答錯`, PAGE_W - MARGIN - 86, y + 28);
+
+          // Question prompt
+          ctx.fillStyle = cInk;
+          ctx.font = `700 18px ${fontSans}`;
+          qLines.forEach(function(line, li) {
+            ctx.fillText(line, MARGIN + 20, y + 28 + li * 25);
+          });
+
+          let innerY = y + 28 + qLines.length * 25 + 6;
+          ctx.font = `700 16px ${fontSans}`;
+          ctx.fillStyle = rec.isCorrect ? cPos : cErr;
+          ctx.fillText(`您的作答：${rec.userAnswer}`, MARGIN + 20, innerY);
+          ctx.fillStyle = cInk;
+          ctx.fillText(`正確答案：${corrAns}`, MARGIN + 420, innerY);
+
+          innerY += 26;
+          ctx.fillStyle = cMuted;
+          ctx.font = `400 16px ${fontSans}`;
+          expLines.forEach(function(line, li) {
+            ctx.fillText(line, MARGIN + 20, innerY + li * 23);
+          });
+
+          y += cardH;
+        });
+
+        y += 14;
+      });
+
+      // Draw page numbers on every page
+      const totalPages = pages.length;
+      pages.forEach(function(p, idx) {
+        const pctx = p.ctx;
+        pctx.fillStyle = cRule;
+        pctx.fillRect(MARGIN, FOOTER_Y - 18, CONTENT_W, 1);
+        pctx.fillStyle = cMuted;
+        pctx.font = `400 15px ${fontSans}`;
+        pctx.fillText(`${st.name}（${st.studentId}）｜課程學習成果呈現指南能力測驗報告`, MARGIN, FOOTER_Y + 8);
+        pctx.fillText(`第 ${idx + 1} / ${totalPages} 頁`, PAGE_W - MARGIN - 110, FOOTER_Y + 8);
+      });
+
+      return assembleJpegPagesToPdf(pages);
+    }
+
+    function assembleJpegPagesToPdf(pages) {
+      const encoder = new TextEncoder();
+      const chunks = [];
+      let byteLength = 0;
+      const offsets = [0]; // object 0 unused
+
+      function pushBytes(u8) {
+        chunks.push(u8);
+        byteLength += u8.length;
+      }
+
+      function pushStr(s) {
+        pushBytes(encoder.encode(s));
+      }
+
+      pushStr(`%PDF-1.4\n`);
+
+      const n = pages.length;
+      const pageIds = [];
+      for (let i = 0; i < n; i++) {
+        pageIds.push(3 + i * 3);
+      }
+
+      // Obj 1: Catalog
+      offsets[1] = byteLength;
+      pushStr(`1 0 obj\n<< /Type /Catalog /Pages 2 0 R >>\nendobj\n`);
+
+      // Obj 2: Pages
+      offsets[2] = byteLength;
+      const kidsStr = pageIds.map(function(id) { return `${id} 0 R`; }).join(` `);
+      pushStr(`2 0 obj\n<< /Type /Pages /Kids [ ${kidsStr} ] /Count ${n} >>\nendobj\n`);
+
+      // Page + Content + Image Objects
+      for (let i = 0; i < n; i++) {
+        const p = pages[i];
+        const pageId = 3 + i * 3;
+        const contentId = 4 + i * 3;
+        const imgId = 5 + i * 3;
+
+        const dataUrl = p.canvas.toDataURL(`image/jpeg`, 0.9);
+        const base64 = dataUrl.split(`,`)[1];
+        const binStr = atob(base64);
+        const imgBytes = new Uint8Array(binStr.length);
+        for (let j = 0; j < binStr.length; j++) {
+          imgBytes[j] = binStr.charCodeAt(j);
+        }
+
+        const contentStream = `q 595.28 0 0 841.89 0 0 cm /Im0 Do Q\n`;
+
+        offsets[pageId] = byteLength;
+        pushStr(`${pageId} 0 obj\n<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595.28 841.89] /Resources << /XObject << /Im0 ${imgId} 0 R >> >> /Contents ${contentId} 0 R >>\nendobj\n`);
+
+        offsets[contentId] = byteLength;
+        pushStr(`${contentId} 0 obj\n<< /Length ${contentStream.length} >>\nstream\n${contentStream}endstream\nendobj\n`);
+
+        offsets[imgId] = byteLength;
+        pushStr(`${imgId} 0 obj\n<< /Type /XObject /Subtype /Image /Width ${p.canvas.width} /Height ${p.canvas.height} /ColorSpace /DeviceRGB /BitsPerComponent 8 /Filter /DCTDecode /Length ${imgBytes.length} >>\nstream\n`);
+        pushBytes(imgBytes);
+        pushStr(`\nendstream\nendobj\n`);
+      }
+
+      const xrefOffset = byteLength;
+      const totalObjs = 2 + n * 3;
+      pushStr(`xref\n0 ${totalObjs + 1}\n0000000000 65535 f \n`);
+      for (let objNum = 1; objNum <= totalObjs; objNum++) {
+        const off = String(offsets[objNum]).padStart(10, `0`);
+        pushStr(`${off} 00000 n \n`);
+      }
+      pushStr(`trailer\n<< /Size ${totalObjs + 1} /Root 1 0 R >>\nstartxref\n${xrefOffset}\n%%EOF`);
+
+      const out = new Uint8Array(byteLength);
+      let cursor = 0;
+      for (let k = 0; k < chunks.length; k++) {
+        out.set(chunks[k], cursor);
+        cursor += chunks[k].length;
+      }
+      return out;
+    }
+
+    // =========================================================================
+    // 7. RENDERING VIEWS
+    // =========================================================================
+    function renderApp() {
+      const loginView = document.getElementById(`view-login`);
+      const wsView = document.getElementById(`view-workspace`);
+      const userStrip = document.getElementById(`user-strip`);
+      const userPill = document.getElementById(`user-pill-info`);
+
+      if (!loginView || !wsView || !userStrip || !userPill) return;
+
+      if (!appState.student) {
+        loginView.classList.remove(`hidden`);
+        wsView.classList.add(`hidden`);
+        userStrip.classList.add(`hidden`);
+        refreshIcons();
+        return;
+      }
+
+      loginView.classList.add(`hidden`);
+      wsView.classList.remove(`hidden`);
+      userStrip.classList.remove(`hidden`);
+
+      userPill.innerHTML = `<strong>${escapeHtml(appState.student.name)}</strong><span>學號 ${escapeHtml(appState.student.studentId)}</span><span>${escapeHtml(appState.student.email)}</span>`;
+      renderWorkspace();
+    }
+
+    function renderWorkspace() {
+      renderChapterNav();
+      renderMainContent();
+      refreshIcons();
+    }
+
+    function renderChapterNav() {
+      const nav = document.getElementById(`chapter-nav`);
+      if (!nav) return;
+
+      let html = `<div class="chapter-nav-title">學習單元與進度鎖定</div>`;
+
+      CHAPTERS.forEach(function(ch, idx) {
+        const isLocked = idx > appState.unlockedChapterMax;
+        const isDone = isChapterCompleted(idx);
+        const isActive = appState.activeChapterIndex === idx && appState.viewMode !== `report`;
+        const stats = getChapterStats(idx);
+
+        let badgeClass = `step-badge`;
+        if (isDone) badgeClass += ` step-badge--done`;
+        else if (isLocked) badgeClass += ` step-badge--locked`;
+
+        let statusHtml = ``;
+        if (isDone) {
+          statusHtml = `<i data-lucide="check" width="14" height="14" aria-hidden="true"></i> 已完成（得分 ${stats.correctCount}/${stats.total}）`;
+        } else if (isLocked) {
+          statusHtml = `<i data-lucide="lock" width="14" height="14" aria-hidden="true"></i> 尚未解鎖`;
+        } else {
+          statusHtml = `<i data-lucide="book-open" width="14" height="14" aria-hidden="true"></i> 已解鎖・學習與測驗`;
+        }
+
+        html += `
+          <button type="button"
+            class="chapter-btn ${isActive ? `chapter-btn--active` : ``}"
+            ${isLocked ? `disabled aria-disabled="true"` : ``}
+            onclick="selectChapter(${idx})">
+            <span class="${badgeClass}">${ch.num}</span>
+            <span class="chapter-btn-meta">
+              <span class="chapter-btn-name">${escapeHtml(ch.title)}</span>
+              <span class="chapter-btn-status">${statusHtml}</span>
+            </span>
+          </button>
+        `;
+      });
+
+      // Final Report Nav Item
+      const reportUnlocked = isAllCompleted();
+      const reportActive = appState.viewMode === `report` || appState.activeChapterIndex === CHAPTERS.length;
+      html += `
+        <button type="button"
+          class="chapter-btn ${reportActive ? `chapter-btn--active` : ``}"
+          ${!reportUnlocked ? `disabled aria-disabled="true"` : ``}
+          onclick="selectChapter(${CHAPTERS.length})">
+          <span class="step-badge ${reportUnlocked ? `step-badge--done` : `step-badge--locked`}">報</span>
+          <span class="chapter-btn-meta">
+            <span class="chapter-btn-name">測驗總結與診斷報告</span>
+            <span class="chapter-btn-status">
+              ${reportUnlocked
+                ? `<i data-lucide="file-text" width="14" height="14" aria-hidden="true"></i> 可檢視並下載 PDF`
+                : `<i data-lucide="lock" width="14" height="14" aria-hidden="true"></i> 須完成全部 5 章解鎖`}
+            </span>
+          </span>
+        </button>
+      `;
+
+      nav.innerHTML = html;
+    }
+
+    function renderMainContent() {
+      const container = document.getElementById(`main-content`);
+      if (!container) return;
+
+      if (appState.viewMode === `report` || appState.activeChapterIndex === CHAPTERS.length) {
+        container.innerHTML = renderFinalReportHtml();
+        refreshIcons();
+        return;
+      }
+
+      const chIdx = appState.activeChapterIndex;
+      const ch = CHAPTERS[chIdx];
+      const chDone = isChapterCompleted(chIdx);
+      const stats = getChapterStats(chIdx);
+
+      let html = `
+        <div class="chapter-head">
+          <div class="chapter-head-top">
+            <span class="step-badge ${chDone ? `step-badge--done` : ``}">${ch.num}</span>
+            <span class="chapter-kicker">${escapeHtml(ch.kicker)}</span>
+            ${chDone ? `<span class="tag tag--ok">本章 6 題已全部作答完成（答對 ${stats.correctCount} / ${stats.total} 題）</span>` : ``}
+          </div>
+          <h1>${escapeHtml(ch.title)}</h1>
+          <p style="margin-top: var(--space-xs); margin-bottom: 0; color: var(--on-surface-variant);">${escapeHtml(ch.summaryLead)}</p>
+        </div>
+      `;
+
+      if (chDone) {
+        html += `
+          <div class="btn-row" style="margin-top: 0; margin-bottom: var(--space-lg);">
+            <button type="button" class="button ${appState.viewMode === `study` ? `` : `button--secondary`} button--compact" onclick="switchChapterView('study')">重點概念統整複習</button>
+            <button type="button" class="button ${appState.viewMode === `review` ? `` : `button--secondary`} button--compact" onclick="switchChapterView('review')">回顧本章作答與解析</button>
+            ${chIdx < CHAPTERS.length - 1
+              ? `<button type="button" class="button button--secondary button--compact" onclick="selectChapter(${chIdx + 1})">前往第 ${chIdx + 2} 章 →</button>`
+              : `<button type="button" class="button button--compact" onclick="selectChapter(${CHAPTERS.length})">檢視總結診斷報告 →</button>`}
+          </div>
+        `;
+      }
+
+      if (appState.viewMode === `study`) {
+        html += renderStudySectionHtml(ch, chIdx, chDone);
+      } else if (appState.viewMode === `review` && chDone) {
+        html += renderChapterReviewHtml(ch);
+      } else {
+        html += renderSingleQuizHtml(ch, chIdx);
+      }
+
+      container.innerHTML = html;
+      refreshIcons();
+    }
+
+    function renderStudySectionHtml(ch, chIdx, chDone) {
+      let cardsHtml = ch.studyBlocks.map(function(blk) {
+        return `
+          <article class="study-card">
+            <h3>${escapeHtml(blk.title)}</h3>
+            ${blk.html}
+          </article>
+        `;
+      }).join(``);
+
+      let tableHtml = ``;
+      if (ch.tableData) {
+        const ths = ch.tableData.headers.map(function(h) {
+          const isNum = h.includes(`率`);
+          return `<th class="${isNum ? `num` : ``}">${escapeHtml(h)}</th>`;
+        }).join(``);
+        const trs = ch.tableData.rows.map(function(row) {
+          const tds = row.map(function(cell, ci) {
+            const isNum = ch.tableData.headers[ci] && ch.tableData.headers[ci].includes(`率`);
+            return `<td class="${isNum ? `num` : ``}">${escapeHtml(cell)}</td>`;
+          }).join(``);
+          return `<tr>${tds}</tr>`;
+        }).join(``);
+
+        tableHtml = `
+          <div class="study-section">
+            <h3 style="margin-bottom: var(--space-sm);">${escapeHtml(ch.tableData.caption)}</h3>
+            <div class="data-table-wrap">
+              <table class="handbook-table">
+                <thead><tr>${ths}</tr></thead>
+                <tbody>${trs}</tbody>
+              </table>
+            </div>
+          </div>
+        `;
+      }
+
+      const answeredCount = ch.questions.filter(function(q) { return Boolean(appState.answers[q.id]); }).length;
+      const actionLabel = chDone
+        ? `回顧本章 6 題作答解析`
+        : answeredCount > 0
+          ? `繼續進行本章測驗（從第 ${Math.min(answeredCount + 1, 6)} 題繼續）→`
+          : `開始本章測驗（共 6 題）→`;
+
+      return `
+        <div class="study-section">
+          <div class="study-grid">${cardsHtml}</div>
+          ${tableHtml}
+          <div class="inset">
+            <strong>本章測驗說明：</strong>共 6 題（四選一選擇題 2 題、是非題 2 題、關鍵詞填充題 2 題），採單題推進作答與即時解析，完成全部 6 題後將自動解鎖下一章。
+            <div class="btn-row">
+              <button type="button" class="button" onclick="${chDone ? `switchChapterView('review')` : `startChapterQuiz()`}">${actionLabel}</button>
+            </div>
+          </div>
+        </div>
+      `;
+    }
+
+    function renderSingleQuizHtml(ch, chIdx) {
+      const qIdx = appState.currentQuestionIndex;
+      const q = ch.questions[qIdx];
+      const submitted = appState.answers[q.id] || null;
+      const activeChoice = submitted ? submitted.userAnswer : tempSelection;
+
+      let drawerHtml = ``;
+      if (showQuizStudyDrawer) {
+        drawerHtml = `
+          <div class="drawer-box">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: var(--space-sm);">
+              <strong>本章重點快速參考</strong>
+              <button type="button" class="button button--secondary button--compact" onclick="toggleQuizStudyDrawer()">收合摘要</button>
+            </div>
+            ${ch.studyBlocks.map(function(b) {
+              return `<div style="margin-bottom: var(--space-sm);"><strong>${escapeHtml(b.title)}</strong>${b.html}</div>`;
+            }).join(``)}
+          </div>
+        `;
+      }
+
+      // Render Question Input Area by Type
+      let inputAreaHtml = ``;
+      if (q.type === `mcq`) {
+        const keys = [`A`, `B`, `C`, `D`];
+        inputAreaHtml = `<div class="options-stack">` + q.options.map(function(opt, oi) {
+          let cls = `option-btn`;
+          if (submitted) {
+            if (opt === q.correct) cls += ` option-btn--correct`;
+            else if (opt === submitted.userAnswer && !submitted.isCorrect) cls += ` option-btn--wrong`;
+          } else if (activeChoice === opt) {
+            cls += ` option-btn--selected`;
+          }
+          return `
+            <button type="button" class="${cls}" ${submitted ? `disabled` : ``} onclick="chooseOption('${escapeHtml(opt)}')">
+              <span class="option-key">${keys[oi]}</span>
+              <span>${escapeHtml(opt)}</span>
+            </button>
+          `;
+        }).join(``) + `</div>`;
+      } else if (q.type === `tf`) {
+        const tfIcons = [`O`, `X`];
+        inputAreaHtml = `<div class="options-tf-grid">` + q.options.map(function(opt, oi) {
+          let cls = `option-btn`;
+          if (submitted) {
+            if (opt === q.correct) cls += ` option-btn--correct`;
+            else if (opt === submitted.userAnswer && !submitted.isCorrect) cls += ` option-btn--wrong`;
+          } else if (activeChoice === opt) {
+            cls += ` option-btn--selected`;
+          }
+          return `
+            <button type="button" class="${cls}" ${submitted ? `disabled` : ``} onclick="chooseOption('${escapeHtml(opt)}')">
+              <span class="option-key">${tfIcons[oi]}</span>
+              <span><strong>${escapeHtml(opt)}</strong></span>
+            </button>
+          `;
+        }).join(``) + `</div>`;
+      } else if (q.type === `fill_input`) {
+        inputAreaHtml = `
+          <div class="fill-area">
+            <label class="field-label" for="fill-text-input">請填入關鍵詞或數字</label>
+            <span class="field-hint">${escapeHtml(q.hint || `請輸入正確答案`)}</span>
+            <input type="text" id="fill-text-input" class="input-box"
+              value="${escapeHtml(activeChoice)}"
+              ${submitted ? `disabled` : ``}
+              oninput="handleInputTemp(this.value)">
+          </div>
+        `;
+      } else if (q.type === `fill_select`) {
+        const optsHtml = `<option value="">請選擇正確關鍵詞…</option>` + q.options.map(function(opt) {
+          const selAttr = activeChoice === opt ? `selected` : ``;
+          return `<option value="${escapeHtml(opt)}" ${selAttr}>${escapeHtml(opt)}</option>`;
+        }).join(``);
+        inputAreaHtml = `
+          <div class="fill-area">
+            <label class="field-label" for="fill-select-input">請下拉選填最適合的關鍵詞</label>
+            <span class="field-hint">選出最符合手冊規範的描述</span>
+            <select id="fill-select-input" class="select-box"
+              ${submitted ? `disabled` : ``}
+              onchange="handleInputTemp(this.value)">
+              ${optsHtml}
+            </select>
+          </div>
+        `;
+      }
+
+      // Action or Immediate Feedback Panel
+      let bottomHtml = ``;
+      if (!submitted) {
+        bottomHtml = `
+          <p id="quiz-inline-error" class="field-error hidden" role="alert"></p>
+          <div class="btn-row">
+            <button type="button" class="button" onclick="submitCurrentAnswer()">確認送出答案</button>
+          </div>
+        `;
+      } else {
+        const corrDisplay = getDisplayCorrectAnswer(q);
+        const isLastQ = qIdx === ch.questions.length - 1;
+        let nextLabel = `進入下一題 →`;
+        if (isLastQ) {
+          nextLabel = chIdx < CHAPTERS.length - 1
+            ? `完成第 ${ch.num} 章，解鎖第 ${ch.num + 1} 章 →`
+            : `完成全部測驗，檢視學習診斷報告 →`;
+        }
+
+        bottomHtml = `
+          <div class="feedback-box ${submitted.isCorrect ? `inset--ok` : `inset--error`}" role="status">
+            <div class="feedback-header" style="color: ${submitted.isCorrect ? `var(--positive)` : `var(--error)`};">
+              <i data-lucide="${submitted.isCorrect ? `check-circle-2` : `x-circle`}" width="22" height="22" aria-hidden="true"></i>
+              <span>${submitted.isCorrect ? `作答正確！` : `答錯了，請參閱下方解析`}</span>
+            </div>
+            <p style="margin-bottom: var(--space-sm);">
+              <strong>您的作答：</strong>${escapeHtml(submitted.userAnswer)}
+              &nbsp;&nbsp;|&nbsp;&nbsp;
+              <strong>正確答案：</strong>${escapeHtml(corrDisplay)}
+            </p>
+            <p style="margin-bottom: 0;"><strong>重點解析：</strong>${escapeHtml(q.explanation)}</p>
+          </div>
+          <div class="btn-row">
+            <button type="button" class="button" onclick="advanceNextQuestion()">${nextLabel}</button>
+          </div>
+        `;
+      }
+
+      return `
+        <div class="quiz-panel">
+          <div class="quiz-meta-bar">
+            <div class="quiz-q-id">
+              <span class="step-badge">Q${qIdx + 1}</span>
+              <span class="tag">${escapeHtml(TYPE_LABELS[q.type])}</span>
+            </div>
+            <button type="button" class="button button--secondary button--compact" onclick="toggleQuizStudyDrawer()">
+              ${showQuizStudyDrawer ? `隱藏重點摘要` : `查看本章重點摘要`}
+            </button>
+          </div>
+          ${drawerHtml}
+          <div class="quiz-question-text">${escapeHtml(q.prompt)}</div>
+          ${inputAreaHtml}
+          ${bottomHtml}
+        </div>
+      `;
+    }
+
+    function renderChapterReviewHtml(ch) {
+      let html = `<div class="study-section">`;
+      ch.questions.forEach(function(q, qi) {
+        const rec = appState.answers[q.id] || { userAnswer: `未作答`, isCorrect: false };
+        const corrDisplay = getDisplayCorrectAnswer(q);
+        html += `
+          <div class="record-item">
+            <div class="record-item-head">
+              <span class="step-badge ${rec.isCorrect ? `step-badge--done` : ``}">Q${qi + 1}</span>
+              <span class="tag tag--muted">${escapeHtml(TYPE_SHORT[q.type])}</span>
+              <span class="tag ${rec.isCorrect ? `tag--ok` : `tag--error`}">${rec.isCorrect ? `正確` : `答錯`}</span>
+            </div>
+            <div class="record-q">${escapeHtml(q.prompt)}</div>
+            <div class="record-ans-row">
+              <span><strong>您的作答：</strong>${escapeHtml(rec.userAnswer)}</span>
+              <span><strong>正確答案：</strong>${escapeHtml(corrDisplay)}</span>
+            </div>
+            <div class="record-exp"><strong>解析：</strong>${escapeHtml(q.explanation)}</div>
+          </div>
+        `;
+      });
+      html += `</div>`;
+      return html;
+    }
+
+    function renderFinalReportHtml() {
+      const stats = getOverallStats();
+      const st = appState.student || { name: ``, studentId: ``, email: `` };
+
+      // Build clean SVG Horizontal Bar Chart (Handbook Data Viz rules: flat bars, direct labels, no border)
+      const svgW = 680;
+      const svgH = 220;
+      const labelW = 190;
+      const barMaxW = 390;
+      let barsSvg = ``;
+      stats.chapters.forEach(function(ch, i) {
+        const yPos = 14 + i * 40;
+        const barW = Math.max(4, Math.round((ch.pct / 100) * barMaxW));
+        const fillToken = ch.pct >= 83 ? `var(--positive)` : ch.pct >= 67 ? `var(--data-1)` : `var(--warning)`;
+        barsSvg += `
+          <text x="0" y="${yPos + 19}" fill="var(--on-surface)" font-size="13" font-weight="700">第 ${ch.num} 章（${ch.correct}/${ch.total} 題）</text>
+          <rect x="${labelW}" y="${yPos + 4}" width="${barMaxW}" height="20" fill="var(--surface-container-low)"></rect>
+          <rect x="${labelW}" y="${yPos + 4}" width="${barW}" height="20" fill="${fillToken}"></rect>
+          <text x="${labelW + barMaxW + 12}" y="${yPos + 19}" fill="var(--on-surface)" font-size="13" font-weight="800">${ch.pct}%</text>
+        `;
+      });
+
+      // Chapter table rows
+      const chRowsHtml = stats.chapters.map(function(ch) {
+        const levelTag = ch.pct >= 83
+          ? `<span class="tag tag--ok">精熟</span>`
+          : ch.pct >= 67
+            ? `<span class="tag">良好</span>`
+            : `<span class="tag tag--warn">建議複習</span>`;
+        const advice = ch.pct === 100
+          ? `觀念完整掌握，可直接運用於檢核自身作品。`
+          : `建議回顧第 ${ch.num} 章摘要與下方錯題解析。`;
+        return `
+          <tr>
+            <td><strong>第 ${ch.num} 章｜${escapeHtml(ch.title)}</strong></td>
+            <td class="num">${ch.correct} / ${ch.total}</td>
+            <td class="num"><strong>${ch.pct} 分</strong></td>
+            <td>${levelTag}</td>
+            <td>${escapeHtml(advice)}</td>
+          </tr>
+        `;
+      }).join(``);
+
+      // Detailed 30-question records filtered
+      let recordsHtml = ``;
+      let shownCount = 0;
+      CHAPTERS.forEach(function(ch, chIdx) {
+        if (reportFilter.startsWith(`ch`) && reportFilter !== `ch${chIdx}`) return;
+        ch.questions.forEach(function(q, qi) {
+          const rec = appState.answers[q.id] || { userAnswer: `未作答`, isCorrect: false };
+          if (reportFilter === `wrong` && rec.isCorrect) return;
+          shownCount++;
+          const corrDisplay = getDisplayCorrectAnswer(q);
+          recordsHtml += `
+            <div class="record-item">
+              <div class="record-item-head">
+                <span class="step-badge ${rec.isCorrect ? `step-badge--done` : ``}">第${ch.num}章 Q${qi + 1}</span>
+                <span class="tag tag--muted">${escapeHtml(TYPE_SHORT[q.type])}</span>
+                <span class="tag ${rec.isCorrect ? `tag--ok` : `tag--error`}">${rec.isCorrect ? `正確` : `答錯`}</span>
+              </div>
+              <div class="record-q">${escapeHtml(q.prompt)}</div>
+              <div class="record-ans-row">
+                <span><strong>您的作答：</strong>${escapeHtml(rec.userAnswer)}</span>
+                <span><strong>正確答案：</strong>${escapeHtml(corrDisplay)}</span>
+              </div>
+              <div class="record-exp"><strong>解析：</strong>${escapeHtml(q.explanation)}</div>
+            </div>
+          `;
+        });
+      });
+
+      if (shownCount === 0) {
+        recordsHtml = `<div class="inset inset--ok"><strong>太棒了！</strong>目前篩選條件下沒有答錯的題目，您已全部答對。</div>`;
+      }
+
+      return `
+        <div class="chapter-head">
+          <div class="chapter-head-top">
+            <span class="step-badge step-badge--done">報</span>
+            <span class="chapter-kicker">全章節測驗完成｜個人學習診斷報告</span>
+          </div>
+          <h1>學習歷程呈現指南｜測驗總結與診斷報告</h1>
+          <p style="margin-top: var(--space-xs); margin-bottom: 0; color: var(--on-surface-variant);">
+            以下彙整您的身分資訊、各章節作答成績、題型表現分析與全部 30 題作答解析，可一鍵輸出為 A4 PDF 報告存檔。
+          </p>
+        </div>
+
+        <div class="inset">
+          <div style="display: flex; flex-wrap: wrap; gap: var(--space-lg); margin-bottom: var(--space-sm);">
+            <div><span style="color: var(--on-surface-variant); font-size: var(--label-size);">中文姓名</span><br><strong>${escapeHtml(st.name)}</strong></div>
+            <div><span style="color: var(--on-surface-variant); font-size: var(--label-size);">學號</span><br><strong>${escapeHtml(st.studentId)}</strong></div>
+            <div><span style="color: var(--on-surface-variant); font-size: var(--label-size);">學校信箱帳號</span><br><strong>${escapeHtml(st.email)}</strong></div>
+            <div><span style="color: var(--on-surface-variant); font-size: var(--label-size);">完成時間</span><br><strong>${escapeHtml(appState.completedAt || ``)}</strong></div>
+          </div>
+          <div class="btn-row no-print">
+            <button type="button" id="btn-download-pdf" class="button" onclick="downloadGeneratedPdf()">
+              <i data-lucide="download" width="18" height="18" aria-hidden="true"></i>
+              作答紀錄 PDF 輸出下載
+            </button>
+            <button type="button" class="button button--secondary" onclick="triggerBrowserPrint()">
+              <i data-lucide="printer" width="18" height="18" aria-hidden="true"></i>
+              列印／系統另存 PDF
+            </button>
+          </div>
+          <p id="pdf-status-msg" class="${pdfStatusMsg ? `` : `hidden`}" style="margin-top: var(--space-sm); margin-bottom: 0; font-size: var(--label-size); font-weight: 700; color: var(--tertiary);">${escapeHtml(pdfStatusMsg)}</p>
+        </div>
+
+        <div class="kpi-grid">
+          <div class="kpi-tile ${stats.overallScore >= 80 ? `kpi-tile--ok` : ``}">
+            <div class="kpi-label">總測驗成績</div>
+            <div class="kpi-val">${stats.overallScore} 分</div>
+            <div class="kpi-sub">共答對 ${stats.totalCorrect} / ${stats.totalQ} 題</div>
+          </div>
+          <div class="kpi-tile">
+            <div class="kpi-label">選擇題（四選一）</div>
+            <div class="kpi-val">${stats.byType.mcq.correct} / ${stats.byType.mcq.total} 題</div>
+            <div class="kpi-sub">答對率 ${Math.round(stats.byType.mcq.correct / stats.byType.mcq.total * 100)}%</div>
+          </div>
+          <div class="kpi-tile">
+            <div class="kpi-label">是非題</div>
+            <div class="kpi-val">${stats.byType.tf.correct} / ${stats.byType.tf.total} 題</div>
+            <div class="kpi-sub">答對率 ${Math.round(stats.byType.tf.correct / stats.byType.tf.total * 100)}%</div>
+          </div>
+          <div class="kpi-tile">
+            <div class="kpi-label">關鍵詞填充題</div>
+            <div class="kpi-val">${stats.byType.fill.correct} / ${stats.byType.fill.total} 題</div>
+            <div class="kpi-sub">答對率 ${Math.round(stats.byType.fill.correct / stats.byType.fill.total * 100)}%</div>
+          </div>
+        </div>
+
+        <div class="chart-section">
+          <h2 style="margin-bottom: var(--space-sm);">各章節掌握度分佈圖</h2>
+          <div class="chart-container" style="min-height: 220px;">
+            <svg viewBox="0 0 ${svgW} ${svgH}" width="100%" style="max-width: 680px; height: auto; display: block;" role="img" aria-label="各章節答對率長條圖">
+              ${barsSvg}
+            </svg>
+          </div>
+        </div>
+
+        <div class="study-section">
+          <h2 style="margin-bottom: var(--space-sm);">各章節測驗成績與複習建議</h2>
+          <div class="data-table-wrap">
+            <table class="handbook-table">
+              <thead>
+                <tr>
+                  <th>章節名稱</th>
+                  <th class="num">答對題數</th>
+                  <th class="num">章節得分</th>
+                  <th>掌握程度</th>
+                  <th>學習診斷建議</th>
+                </tr>
+              </thead>
+              <tbody>${chRowsHtml}</tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="study-section">
+          <h2 style="margin-bottom: var(--space-sm);">詳細作答紀錄與解析（共 30 題）</h2>
+          <div class="filter-bar no-print">
+            <button type="button" class="button ${reportFilter === `all` ? `` : `button--secondary`} button--compact" onclick="setReportFilter('all')">全部 30 題</button>
+            <button type="button" class="button ${reportFilter === `wrong` ? `` : `button--secondary`} button--compact" onclick="setReportFilter('wrong')">僅看答錯題目</button>
+            ${CHAPTERS.map(function(c, ci) {
+              return `<button type="button" class="button ${reportFilter === `ch${ci}` ? `` : `button--secondary`} button--compact" onclick="setReportFilter('ch${ci}')">第 ${c.num} 章</button>`;
+            }).join(``)}
+          </div>
+          ${recordsHtml}
+        </div>
+      `;
+    }
+
+    // =========================================================================
+    // 8. INITIALIZATION
+    // =========================================================================
+    async function initApp() {
+      try {
+        if (window.notebookAppApi && typeof window.notebookAppApi.getAppState === `function`) {
+          const saved = await window.notebookAppApi.getAppState();
+          if (saved) {
+            restoreFromState(saved);
+          }
+        }
+      } catch (err) {
+        // Fallback to clean initial state
+      }
+      renderApp();
+      try {
+        if (window.notebookAppApi && typeof window.notebookAppApi.notifyAppReady === `function`) {
+          window.notebookAppApi.notifyAppReady();
+        }
+      } catch (err) {
+        // Ignore if shim not active
+      }
+    }
+
+    document.addEventListener(`DOMContentLoaded`, initApp);
+  </script>
+</body>
+</html>
